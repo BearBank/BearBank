@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BearBank | Gestión de Préstamos</title>
+<style>
+:root{
+ --bg:#171a21;--surface:#222630;--ink:#f4f6fc;--muted:#c0c8d8;--line:#3b4252;
+ --nav:#253452;--nav2:#344568;--blue:#7ba7e8;--blue-soft:#e9f2ff;
+ --lav:#b6a5ed;--lav-soft:#f0ebff;--mint:#9bd8c4;--mint-soft:#e8f8f1;
+ --peach:#f3c6a8;--peach-soft:#fff2e8;--rose:#e9aebc;--rose-soft:#fff0f4;
+ --shadow:0 8px 28px rgba(45,65,105,.07);--radius:20px
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
+.app{min-height:100vh;display:grid;grid-template-columns:245px 1fr}
+.sidebar{background:linear-gradient(160deg,#283754,#344766);color:#f8fbff;padding:25px 16px;display:flex;flex-direction:column;gap:28px}
+.brand{display:flex;align-items:center;gap:12px;padding:5px 10px 20px}
+.brandmark{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#c7b8f5,#a5c9ef);display:grid;place-items:center;color:#273958;font-size:24px}
+.brand h1{font-size:21px;margin:0;font-weight:750;letter-spacing:-.5px}.brand small{color:#c5d1e6;font-size:12px}
+.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#d9e2f2;text-align:left;padding:13px 14px;border-radius:13px;font:inherit;cursor:pointer;display:flex;align-items:center;gap:12px}
+.nav button:hover{background:#222630fff12}.nav button.active{background:linear-gradient(100deg,#a99ae8,#91b9e8);color:#20283a;box-shadow:0 5px 15px #111d3825;font-weight:700}
+.nav .ico{width:22px;text-align:center;font-size:18px}.side-note{margin-top:auto;background:#222630fff12;border:1px solid #ffffff15;border-radius:18px;padding:17px;color:#dbe5f4;font-size:12px}
+.side-note strong{display:block;color:white;font-size:14px;margin-bottom:6px}
+.main{min-width:0;padding:24px 30px 34px}
+.topbar{display:flex;align-items:center;gap:15px;margin-bottom:28px}
+.search{background:#222630;border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;flex:1;box-shadow:0 3px 12px #34456808}
+.search input{border:0;outline:0;width:100%;font:inherit;color:var(--ink)}.topuser{display:flex;align-items:center;gap:10px;background:#222630;border:1px solid var(--line);border-radius:14px;padding:8px 13px;color:#d5deef}
+.avatar{width:35px;height:35px;border-radius:50%;background:#e8e4fb;color:#6658a8;display:grid;place-items:center;font-weight:700}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#bdc7dc;font-weight:700}
+h2{font-size:29px;letter-spacing:-.8px;margin:3px 0 4px;color:#f4f6fc}
+.subtitle{color:var(--muted);margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;padding:11px 16px;font:600 14px inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(.98)}
+.btn.primary{background:#8f9fe0;color:white;box-shadow:0 5px 14px #8f9fe033}.btn.soft{background:#2c313d;color:#d3dced;border:1px solid #414858}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);display:flex;gap:13px;align-items:center}
+.metric-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:21px;flex-shrink:0}
+.metric:nth-child(1) .metric-icon{background:var(--blue-soft)}.metric:nth-child(2) .metric-icon{background:var(--mint-soft)}.metric:nth-child(3) .metric-icon{background:var(--lav-soft)}.metric:nth-child(4) .metric-icon{background:var(--peach-soft)}
+.metric label{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}.metric strong{font-size:21px;letter-spacing:-.5px}
+.panel{background:#222630;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.panelhead h3{margin:0;font-size:17px}.panelhead p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.grid-main{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;margin-bottom:18px}
+.chart{height:210px;display:flex;align-items:flex-end;gap:18px;padding:12px 12px 0;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to top,transparent 0,transparent 43px,#343a49 44px)}
+.bar-group{flex:1;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:7px;position:relative}
+.bar{width:24px;border-radius:8px 8px 2px 2px;background:linear-gradient(#b9a9ef,#8e9fe1);min-height:8px}.bar.alt{background:linear-gradient(#a9d9cc,#77bda9)}
+.month{position:absolute;bottom:-26px;font-size:11px;color:#c0c8d8}
+.chart-legend{display:flex;gap:16px;color:#c0c8d8;font-size:12px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:#a99be7}.dot.mint{background:#8bcdb8}
+.month-card{background:linear-gradient(135deg,#a99be7,#8db7e7);color:white;border-radius:20px;padding:24px;min-height:280px;position:relative;overflow:hidden}
+.month-card:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;border:30px solid #ffffff20;right:-70px;bottom:-100px}
+.month-card .small{color:#f5f3ff;font-size:13px}.month-card h3{font-size:15px;margin:0 0 10px}.month-card .amount{font-size:30px;font-weight:750;letter-spacing:-1px;margin-bottom:18px}
+.progress{height:9px;background:#222630fff45;border-radius:20px;overflow:hidden;margin:12px 0 20px}.progress span{display:block;width:62%;height:100%;background:#222630;border-radius:20px}
+.month-stats{display:flex;gap:25px}.month-stats label{display:block;font-size:12px;color:#f4f3ff}.month-stats strong{font-size:17px}
+.lower{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:#aab5ca;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:11px 9px;background:#2b303b}td{padding:13px 9px;border-bottom:1px solid #343a49;color:#e0e6f2}tr:last-child td{border-bottom:0}
+.person{display:flex;align-items:center;gap:9px;font-weight:600}.mini-avatar{width:29px;height:29px;border-radius:10px;background:#e8e4fb;color:#7868b7;display:grid;place-items:center;font-size:11px}
+.status{padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700;background:#2226303df;color:#b7833b}.status.ok{background:#e7f7ef;color:#5baf8b}.status.late{background:#2226300f3;color:#c77b91}
+.portfolio{display:flex;align-items:center;gap:25px;padding:12px 4px}
+.donut{width:145px;height:145px;border-radius:50%;background:conic-gradient(#91d1ba 0 58%,#f0c78d 58% 82%,#e8aab8 82% 100%);display:grid;place-items:center;flex-shrink:0}
+.donut:before{content:"";width:100px;height:100px;border-radius:50%;background:#222630;position:absolute}.donut-center{position:relative;text-align:center;font-size:12px;color:#c0c8d8}.donut-center strong{display:block;color:#f4f6fc;font-size:25px}
+.legend{display:grid;gap:13px;width:100%}.legend-row{display:flex;justify-content:space-between;font-size:13px;color:#c0c8d8}.legend-row span:first-child:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;background:#91d1ba}.legend-row:nth-child(2) span:first-child:before{background:#f0c78d}.legend-row:nth-child(3) span:first-child:before{background:#e8aab8}
+.hidden{display:none!important}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field{display:grid;gap:6px}.field label{font-size:13px;color:#d0d8e8;font-weight:600}.field input,.field select,.field textarea{border:1px solid #e2e8f2;border-radius:11px;padding:12px;background:#191d25;color:#edf1fa;font:inherit;outline-color:#a99be7;color:#f4f6fc}.field.full{grid-column:1/-1}.formactions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.people-table{margin-top:18px}.empty{padding:30px;text-align:center;color:#93a0b5}
+@media(max-width:1150px){.metrics{grid-template-columns:repeat(2,1fr)}.grid-main,.lower{grid-template-columns:1fr}}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{padding:13px;gap:12px}.brand{padding:5px}.nav{grid-template-columns:repeat(2,1fr)}.nav button{padding:10px;font-size:12px}.side-note{display:none}.main{padding:18px}.pagehead{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr 1fr}.metric{padding:12px}.metric strong{font-size:17px}.metric-icon{width:38px;height:38px}.topuser{font-size:12px}.panel{padding:15px;overflow:auto}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+
+/* Ajustes de contraste para tema oscuro */
+body,.main{color:#f4f6fc}
+h2,.panelhead h3,.metric strong,.person{color:#f4f6fc}
+.subtitle,.panelhead p,.metric label,.field label,.eyebrow{color:#c0c8d8}
+input,select,textarea{color:#f4f6fc}
+input::placeholder,textarea::placeholder{color:#929db3;opacity:1}
+select option{background:#222630;color:#f4f6fc}
+.search input{background:transparent;color:#f4f6fc}
+.topuser{color:#e1e8f5}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+#bbGate{position:fixed;inset:0;z-index:99999;background:#171a21;display:flex;align-items:center;justify-content:center;padding:20px}
+#bbGate .gatebox{width:min(420px,100%);background:#222630;border:1px solid #3b4252;border-radius:22px;padding:28px;box-shadow:0 20px 60px #0008}
+#bbGate h2{margin:0 0 8px;color:#f4f6fc}#bbGate p{color:#c0c8d8}
+#bbGate input{width:100%;padding:13px;border-radius:11px;border:1px solid #3b4252;background:#191d25;color:#f4f6fc;margin:7px 0 12px}
+#bbGate button{width:100%;padding:13px;border:0;border-radius:11px;background:#8f9fe0;color:#fff;font-weight:700;cursor:pointer}
+#bbGate .gateerr{color:#e9aebc;min-height:22px;font-size:13px}
+</style>
+</head>
+
+<body>
+<div id="bbGate"><div class="gatebox">
+<div style="font-size:28px;margin-bottom:8px">↗ <b>BearBank</b></div>
+<h2>Acceso privado</h2><p>Ingresa con el correo y contraseña del administrador.</p>
+<label style="color:#d0d8e8">Correo administrador</label><input id="bbEmail" type="email" autocomplete="username" placeholder="correo@ejemplo.com">
+<label style="color:#d0d8e8">Contraseña</label><input id="bbPassword" type="password" autocomplete="current-password" placeholder="Contraseña Supabase">
+<button id="bbLogin">Ingresar</button><div class="gateerr" id="bbError"></div>
+</div></div>
+
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="brandmark">↗</div><div><h1>BearBank</h1><small>Gestión de Préstamos</small></div></div>
+ <nav class="nav">
+  <button class="active" data-view="dashboard"><span class="ico">▦</span> Dashboard</button>
+  <button data-view="calendario"><span class="ico">▣</span> Calendario de cobros</button>
+  <button data-view="recordatorios"><span class="ico">♧</span> Recordatorios</button>
+  <button data-view="admin"><span class="ico">⚙</span> Administrador</button>
+ </nav>
+ <div class="side-note"><strong>Tu cartera, en orden.</strong>Una vista clara y tranquila para administrar personas, préstamos y pagos.</div>
+</aside>
+<main class="main">
+ <header class="topbar"><div class="search">⌕ <input id="globalSearch" placeholder="Buscar persona, cédula o préstamo..."></div><div class="topuser"><div class="avatar">AD</div> Administrador　⌄</div></header>
+ <section id="dashboard" class="view">
+  <div class="pagehead"><div><div class="eyebrow">Inicio · Resumen</div><h2>Dashboard</h2><p class="subtitle">Una visión clara de tu cartera de préstamos.</p></div><button class="btn soft">▣　Este mes　⌄</button></div>
+  <div class="metrics">
+   <div class="metric"><div class="metric-icon">▤</div><div><label>Total prestado</label><strong>$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">↗</div><div><label>Total recuperado</label><strong>$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">％</div><div><label>Intereses cobrados</label><strong>$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">◷</div><div><label>Saldo pendiente</label><strong>$ 0</strong></div></div>
+  </div>
+  <div class="grid-main">
+   <div class="panel"><div class="panelhead"><div><h3>Flujo de cobros y pagos</h3><p>Comportamiento de los últimos meses</p></div><div class="chart-legend"><span><i class="dot"></i>Por cobrar</span><span><i class="dot mint"></i>Cobrado</span></div>
+    <div class="chart"><div class="bar-group"><i class="bar" style="height:35%"></i><i class="bar alt" style="height:22%"></i><span class="month">Ago</span></div><div class="bar-group"><i class="bar" style="height:48%"></i><i class="bar alt" style="height:28%"></i><span class="month">Sep</span></div><div class="bar-group"><i class="bar" style="height:53%"></i><i class="bar alt" style="height:38%"></i><span class="month">Oct</span></div><div class="bar-group"><i class="bar" style="height:65%"></i><i class="bar alt" style="height:42%"></i><span class="month">Nov</span></div><div class="bar-group"><i class="bar" style="height:72%"></i><i class="bar alt" style="height:52%"></i><span class="month">Dic</span></div><div class="bar-group"><i class="bar" style="height:85%"></i><i class="bar alt" style="height:60%"></i><span class="month">Ene</span></div></div>
+   </div>
+   <div class="month-card"><div class="small">RESUMEN MENSUAL</div><h3>Cobros de este mes</h3><div class="amount">$ 0</div><div class="small">Sin pagos registrados todavía</div><div class="progress"><span style="width:0"></span></div><div class="month-stats"><div><label>Recibido</label><strong>$ 0</strong></div><div><label>Pendiente</label><strong>$ 0</strong></div></div></div>
+  </div>
+  <div class="lower">
+   <div class="panel"><div class="panelhead"><div><h3>Próximos cobros</h3><p>Cuotas con vencimiento próximo</p></div><button class="btn soft" onclick="go('calendario')">Ver calendario →</button></div><table><thead><tr><th>Persona</th><th>Préstamo</th><th>Cuota</th><th>Vencimiento</th><th>Estado</th></tr></thead><tbody><tr><td colspan="5" class="empty">Aquí aparecerán los próximos cobros cuando registres préstamos.</td></tr></tbody></table></div>
+   <div class="panel"><div class="panelhead"><div><h3>Estado de la cartera</h3><p>Situación de tus préstamos</p></div></div><div class="portfolio"><div class="donut"><div class="donut-center"><strong>0</strong>Préstamos</div></div><div class="legend"><div class="legend-row"><span>Al día</span><b>0%</b></div><div class="legend-row"><span>Pendientes</span><b>0%</b></div><div class="legend-row"><span>Vencidos</span><b>0%</b></div></div></div></div>
+  </div>
+ </section>
+ <section id="personas" class="view hidden">
+  <div class="pagehead"><div><div class="eyebrow">Gestión</div><h2>Personas y Préstamos</h2><p class="subtitle">Gestión de personas y préstamos.</p></div><div class="actions"><button class="btn soft" onclick="showPeople()">Ver personas</button><button class="btn primary" onclick="showLoan()">＋ Nuevo préstamo</button></div></div>
+  <div id="peopleForm" class="panel"><div class="panelhead"><div><h3>Registrar persona</h3><p>Información de la persona</p></div></div>
+   <form id="personForm"><div class="formgrid">
+    <div class="field full"><label>Nombre completo *</label><input name="nombre" required placeholder="Nombre y apellidos"></div>
+    <div class="field"><label>Cédula (opcional)</label><input name="cedula" placeholder="Número de identificación"></div>
+    <div class="field"><label>Celular (opcional)</label><input name="celular" type="tel" placeholder="Número de contacto"></div>
+    <div class="field"><label>Correo electrónico (opcional)</label><input name="correo" type="email" placeholder="correo@ejemplo.com"></div>
+    <div class="field"><label>Dirección (opcional)</label><input name="direccion" placeholder="Dirección"></div>
+    <div class="field full"><label>Notas (opcional)</label><textarea name="notas" rows="2" placeholder="Información adicional"></textarea></div>
+   </div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar persona</button></div></form>
+  </div>
+  <div id="loanForm" class="panel hidden"><div class="panelhead"><div><h3>Nuevo préstamo</h3><p>Datos del préstamo</p></div><button class="btn soft" onclick="showPeople()">← Volver a personas</button></div>
+   <form id="loanCreate"><div class="formgrid"><div class="field full"><label>Persona *</label><select id="loanPerson" required><option value="">Primero registra una persona</option></select></div><div class="field"><label>Capital (COP) *</label><input type="number" min="1" id="capital" required placeholder="Ej. 500000"></div><div class="field"><label>Interés único *</label><select id="interest"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div><div class="field"><label>Plazo (meses) *</label><input type="number" min="1" max="600" id="term" required value="6"></div><div class="field"><label>Fecha del préstamo *</label><input type="date" id="loanDate" required></div><div class="field"><label>Primer vencimiento (automático)</label><input type="date" id="firstDue" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="loanNotes" rows="2"></textarea></div></div><div id="loanCalc" style="margin-top:16px;color:#7a88a2"></div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar préstamo</button></div></form>
+  </div>
+  <div class="panel people-table"><div class="panelhead"><div><h3>Personas registradas</h3><p id="peopleCount">0 personas</p></div><input id="peopleSearch" placeholder="Buscar..." style="border:1px solid var(--line);border-radius:10px;padding:9px 12px"></div><table><thead><tr><th>Nombre</th><th>Cédula</th><th>Celular</th><th>Préstamos</th><th>Acción</th></tr></thead><tbody id="peopleRows"><tr><td colspan="5" class="empty">Aún no hay personas registradas.</td></tr></tbody></table></div>
+ </section>
+
+<section id="admin" class="view hidden">
+<div class="pagehead"><div><div class="eyebrow">Acceso restringido</div><h2>Administrador</h2><p class="subtitle">Personas, préstamos y pagos en una sola sesión.</p></div><span class="status ok">Administrador</span></div>
+<div class="admin-tabs actions" style="margin-bottom:18px"><button class="btn primary" onclick="adminTab('adminPeople',this)">Personas y Préstamos</button><button class="btn soft" onclick="adminTab('adminPayments',this)">Pagos</button><button class="btn soft" onclick="adminTab('adminPortfolio',this)">Consultar cartera</button><button class="btn soft" onclick="adminTab('adminReports',this)">Reportes</button></div>
+<div id="adminPeople" class="adminpane">
+<div class="panel" style="margin-bottom:18px"><div class="panelhead"><div><h3>Registrar persona + préstamo</h3><p>Registro de persona y préstamo</p></div></div>
+<form id="combinedForm"><div class="formgrid">
+<div class="field full"><label>Nombre completo *</label><input id="pName" required placeholder="Nombre y apellidos"></div>
+<div class="field"><label>Cédula (opcional)</label><input id="pCedula" placeholder="Identificación"></div><div class="field"><label>Celular (opcional)</label><input id="pPhone" type="tel" placeholder="Número de contacto"></div>
+<div class="field"><label>Correo (opcional)</label><input id="pEmail" type="email" placeholder="correo@ejemplo.com"></div><div class="field"><label>Dirección (opcional)</label><input id="pAddress" placeholder="Dirección"></div>
+<div class="field"><label>Capital COP *</label><input id="pCapital" type="number" min="1" required placeholder="500000"></div><div class="field"><label>Interés (Choice) *</label><select id="pRate"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div>
+<div class="field"><label>Plazo en meses *</label><input id="pTerm" type="number" min="1" max="600" value="6" required></div><div class="field"><label>Fecha préstamo *</label><input id="pLoanDate" type="date" required></div><div class="field"><label>Primer vencimiento (automático)</label><input id="pFirstDue" type="date" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="pNotes" rows="2"></textarea></div>
+</div><div id="combinedCalc" style="margin-top:15px;background:#2b303b;padding:12px;border-radius:12px;color:#aab5ca">Completa el capital para calcular.</div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar persona y préstamo</button></div></form></div>
+<div class="panel"><div class="panelhead"><div><h3>Personas registradas</h3><p id="adminPeopleCount">0 personas</p></div><input id="adminSearch" placeholder="Buscar..." style="border:1px solid var(--line);border-radius:10px;padding:9px 12px"></div><table><thead><tr><th>Persona</th><th>Cédula</th><th>Celular</th><th>Préstamos</th><th>Detalle</th></tr></thead><tbody id="adminPeopleRows"><tr><td colspan="5" class="empty">Registra una persona para comenzar.</td></tr></tbody></table></div></div>
+<div id="adminPayments" class="adminpane hidden"><div class="panel"><h3>Registrar pago</h3><div class="formgrid"><div class="field full"><label>Préstamo</label><select id="payLoan"></select></div><div class="field"><label>Fecha</label><input id="payDate" type="date"></div><div class="field"><label>Monto recibido COP</label><input id="payAmount" type="number" min="1"></div><div class="field full"><label>Observación</label><input id="payNote"></div></div><div class="formactions"><button class="btn primary" onclick="savePayment()">Guardar pago</button></div><div id="paymentsList" style="margin-top:15px"></div></div></div>
+<div id="adminPortfolio" class="adminpane hidden"><div class="panel"><h3>Consultar cartera</h3><div id="portfolioList" class="empty">Sin préstamos todavía.</div></div></div>
+<div id="adminReports" class="adminpane hidden"><div class="panel"><h3>Reportes</h3><div id="reportSummary"></div></div></div>
+</section>
+ <section id="pagos" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Movimientos</div><h2>Pagos</h2><p class="subtitle">Registra y consulta los pagos recibidos.</p></div><button class="btn primary" onclick="alert('La pantalla de registro de pagos se habilitará en la siguiente etapa.')">＋ Registrar pago</button></div><div class="panel empty">Los pagos aparecerán aquí cuando registres movimientos.</div></section>
+ <section id="calendario" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Planificación</div><h2>Calendario de Cobros</h2><p class="subtitle">Consulta vencimientos y cuotas programadas.</p></div></div><div class="panel empty">Consulta los próximos vencimientos de la cartera.</div></section>
+ <section id="recordatorios" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Seguimiento</div><h2>Recordatorios</h2><p class="subtitle">Organiza los avisos de cobro.</p></div></div><div class="panel empty">Recordatorios de próximos vencimientos.</div></section>
+ <section id="reportes" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Análisis</div><h2>Reportes</h2><p class="subtitle">Resumen de resultados de tu cartera.</p></div></div><div class="panel empty">Los reportes estarán disponibles con información registrada.</div></section>
+ <section id="configuracion" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Preferencias</div><h2>Configuración</h2><p class="subtitle">Ajustes generales de la plataforma.</p></div></div><div class="panel"><p>Moneda: <strong>COP · Peso colombiano</strong></p><p>Interés: <strong>Único (5%, 10% o 15%)</strong></p><p>Mora: <strong>No se cobra interés moratorio</strong></p></div></section>
+</main>
+</div>
+<script>
+let people=[],loans=[];
+const money=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n||0);
+function go(view){if(view==='personas')view='admin';document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(view).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
+function showPeople(){document.getElementById('peopleForm').classList.remove('hidden');document.getElementById('loanForm').classList.add('hidden')}
+function showLoan(){document.getElementById('peopleForm').classList.add('hidden');document.getElementById('loanForm').classList.remove('hidden');fillPeopleSelect()}
+function fillPeopleSelect(){let s=document.getElementById('loanPerson');s.innerHTML='<option value="">Selecciona una persona</option>'+people.map(p=>`<option value="${p.id}">${esc(p.nombre)}</option>`).join('')}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.getElementById('personForm').onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);people.push({id:Date.now(),nombre:f.get('nombre').trim(),cedula:f.get('cedula').trim(),celular:f.get('celular').trim(),correo:f.get('correo').trim(),direccion:f.get('direccion').trim(),notas:f.get('notas').trim()});e.target.reset();renderPeople();fillPeopleSelect();alert('Persona guardada .');};
+function renderPeople(){let q=(document.getElementById('peopleSearch').value||'').toLowerCase();let list=people.filter(p=>(p.nombre+' '+p.cedula+' '+p.celular).toLowerCase().includes(q));document.getElementById('peopleCount').textContent=people.length+' persona(s)';document.getElementById('peopleRows').innerHTML=list.length?list.map(p=>`<tr><td><div class="person"><span class="mini-avatar">${esc(p.nombre.slice(0,2).toUpperCase())}</span>${esc(p.nombre)}</div></td><td>${esc(p.cedula)||'—'}</td><td>${esc(p.celular)||'—'}</td><td>${loans.filter(l=>l.person===p.id).length}</td><td><button class="btn soft" onclick="personLoans(${p.id})">Ver préstamos</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">No se encontraron personas.</td></tr>'}
+document.getElementById('peopleSearch').oninput=renderPeople;
+function personLoans(id){let p=people.find(x=>x.id===id);let ls=loans.filter(l=>l.person===id);alert(p.nombre+'\\n'+(ls.length?ls.map(l=>l.code+' · '+money(l.total)+' · '+l.term+' meses').join('\\n'):'Sin préstamos registrados.'))}
+function calcLoan(){let c=+document.getElementById('capital').value||0,r=+document.getElementById('interest').value||0,t=+document.getElementById('term').value||1;document.getElementById('loanCalc').textContent=`Interés total: ${money(c*r/100)} · Total pactado: ${money(c*(1+r/100))} · Cuota estimada: ${money(c*(1+r/100)/t)}`}
+['capital','interest','term'].forEach(id=>document.getElementById(id).addEventListener('input',calcLoan));
+function addMonthsDate(dateStr, months=1){const [y,m,d]=dateStr.split('-').map(Number);const target=new Date(y,m-1+months,1);const lastDay=new Date(target.getFullYear(),target.getMonth()+1,0).getDate();target.setDate(Math.min(d,lastDay));return `${target.getFullYear()}-${String(target.getMonth()+1).padStart(2,'0')}-${String(target.getDate()).padStart(2,'0')}`;}
+let today=new Date();today=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('loanDate').value=today;let due=addMonthsDate(today);document.getElementById('firstDue').value=due;
+document.getElementById('loanDate').addEventListener('change',e=>{document.getElementById('firstDue').value=addMonthsDate(e.target.value);});
+document.getElementById('loanCreate').onsubmit=e=>{e.preventDefault();let c=+capital.value,r=+interest.value,t=+term.value,total=c*(1+r/100);loans.push({code:'P-'+String(loans.length+1).padStart(4,'0'),person:+loanPerson.value,capital:c,rate:r,term:t,total,installment:total/t,date:loanDate.value,due:firstDue.value,notes:loanNotes.value});renderPeople();alert('Préstamo registrado correctamente.');e.target.reset();loanDate.value=today;firstDue.value=addMonthsDate(today);calcLoan();showPeople()};
+document.getElementById('globalSearch').oninput=e=>{if(e.target.value){go('personas');document.getElementById('peopleSearch').value=e.target.value;renderPeople()}};
+
+function adminTab(id,btn){document.querySelectorAll('.adminpane').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.admin-tabs .btn').forEach(b=>b.className='btn soft');if(btn)btn.className='btn primary';if(id==='adminPayments')refreshPayLoans();if(id==='adminPortfolio')renderPortfolio();if(id==='adminReports')renderReports();}
+let payments=[];
+function refreshAdmin(){let q=(document.getElementById('adminSearch').value||'').toLowerCase(),arr=people.filter(p=>(p.nombre+' '+p.cedula+' '+p.celular).toLowerCase().includes(q));document.getElementById('adminPeopleCount').textContent=people.length+' persona(s)';document.getElementById('adminPeopleRows').innerHTML=arr.length?arr.map(p=>`<tr><td>${esc(p.nombre)}</td><td>${esc(p.cedula)||'—'}</td><td>${esc(p.celular)||'—'}</td><td>${loans.filter(l=>l.person===p.id).length}</td><td><button class="btn soft" onclick="personLoans(${p.id})">Ver</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Sin coincidencias.</td></tr>'}
+function refreshPayLoans(){payLoan.innerHTML='<option value="">Selecciona préstamo</option>'+loans.map(l=>`<option value="${l.code}">${l.code} · ${esc(people.find(p=>p.id===l.person)?.nombre||'')}</option>`).join('')}
+function savePayment(){let code=payLoan.value,amount=+payAmount.value;if(!code||amount<=0){alert('Selecciona préstamo y monto válido.');return}payments.push({code,amount,date:payDate.value||today,note:payNote.value});payAmount.value='';payNote.value='';paymentsList.innerHTML=payments.map(p=>`<div style="padding:10px;border-bottom:1px solid var(--line)">${p.date} · ${p.code} · <b>${money(p.amount)}</b></div>`).join('');alert('Pago registrado correctamente.')}
+function renderPortfolio(){portfolioList.innerHTML=loans.length?loans.map(l=>{let p=people.find(x=>x.id===l.person),paid=payments.filter(x=>x.code===l.code).reduce((a,x)=>a+x.amount,0);return `<div style="padding:13px;border-bottom:1px solid var(--line)"><b>${esc(p?.nombre||'')}</b> · ${l.code}<br><span style="color:#c0c8d8">Pactado ${money(l.total)} · Pagado ${money(paid)} · Saldo ${money(Math.max(0,l.total-paid))}</span></div>`}).join(''):'Sin préstamos registrados.'}
+function renderReports(){let cap=loans.reduce((a,l)=>a+l.capital,0),paid=payments.reduce((a,p)=>a+p.amount,0),interest=loans.reduce((a,l)=>a+l.capital*l.rate/100,0);reportSummary.innerHTML=`<p>Capital prestado: <b>${money(cap)}</b></p><p>Pagos recibidos: <b>${money(paid)}</b></p><p>Interés pactado: <b>${money(interest)}</b></p><p>Saldo: <b>${money(Math.max(0,loans.reduce((a,l)=>a+l.total,0)-paid))}</b></p>`}
+function combinedCalc(){let c=+pCapital.value||0,r=+pRate.value,t=+pTerm.value||1;combinedCalcBox.textContent=`Interés total ${money(c*r/100)} · Total ${money(c*(1+r/100))} · Cuota ${money(c*(1+r/100)/t)}`}
+const combinedCalcBox=document.getElementById('combinedCalc');['pCapital','pRate','pTerm'].forEach(id=>document.getElementById(id).addEventListener('input',combinedCalc));
+pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);pLoanDate.addEventListener('change',()=>{pFirstDue.value=addMonthsDate(pLoanDate.value);});
+combinedForm.onsubmit=e=>{e.preventDefault();let id=Date.now(),c=+pCapital.value,r=+pRate.value,t=+pTerm.value,total=c*(1+r/100);people.push({id,nombre:pName.value.trim(),cedula:pCedula.value.trim(),celular:pPhone.value.trim(),correo:pEmail.value.trim(),direccion:pAddress.value.trim()});loans.push({code:'P-'+String(loans.length+1).padStart(4,'0'),person:id,capital:c,rate:r,term:t,total,installment:total/t,date:pLoanDate.value,due:pFirstDue.value,notes:pNotes.value});e.target.reset();pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);pLoanDate.addEventListener('change',()=>{pFirstDue.value=addMonthsDate(pLoanDate.value);});combinedCalc();refreshAdmin();alert('Persona y préstamo registrados correctamente.')};
+adminSearch.oninput=refreshAdmin;
+</script>
+
+<script>
+const BB_SUPABASE_URL='https://kvpwgyvyianthwztahwz.supabase.co';
+const BB_SUPABASE_KEY='sb_publishable_gZvVbZDuF7T5eNwqKl7G5w_TxJooru4';
+const bbClient=window.supabase.createClient(BB_SUPABASE_URL,BB_SUPABASE_KEY);
+document.querySelector('.app').style.visibility='hidden';
+document.getElementById('bbLogin').addEventListener('click',async()=>{
+ const err=document.getElementById('bbError');err.textContent='';
+ const email=document.getElementById('bbEmail').value.trim(),password=document.getElementById('bbPassword').value;
+ if(!email||!password){err.textContent='Ingresa correo y contraseña.';return;}
+ const btn=document.getElementById('bbLogin');btn.disabled=true;btn.textContent='Validando...';
+ const {data,error}=await bbClient.auth.signInWithPassword({email,password});
+ btn.disabled=false;btn.textContent='Ingresar';
+ if(error){err.textContent='No fue posible ingresar. Verifica tus credenciales.';return;}
+ const {data:who}=await bbClient.auth.getUser();
+ if(who?.user?.id!=='d1eb4189-787d-49ad-b632-f565a11413f4'){
+   await bbClient.auth.signOut();err.textContent='Este usuario no tiene acceso de administrador.';return;
+ }
+ document.getElementById('bbGate').remove();document.querySelector('.app').style.visibility='visible';
+ const topuser=document.querySelector('.topuser');if(topuser)topuser.innerHTML='<div class="avatar">AD</div> Administrador <button onclick="bbLogout()" style="border:0;background:transparent;color:#e1e8f5;cursor:pointer">Salir</button>';
+});
+async function bbLogout(){await bbClient.auth.signOut();location.reload();}
+</script>
+</body>
+</html>
