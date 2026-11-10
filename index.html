@@ -34,6 +34,7 @@ h2{font-size:29px;letter-spacing:-.8px;margin:3px 0 4px;color:#f4f6fc}
 .btn{border:0;border-radius:12px;padding:11px 16px;font:600 14px inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
 .btn:hover{transform:translateY(-1px);filter:brightness(.98)}
 .btn.primary{background:#8f9fe0;color:white;box-shadow:0 5px 14px #8f9fe033}.btn.soft{background:#2c313d;color:#d3dced;border:1px solid #414858}
+.btn.person-delete{background:transparent;border:0;color:#8992a4;padding:5px 7px;font-size:11px;font-weight:500;opacity:.62;box-shadow:none}.btn.person-delete:hover{color:#d69aab;opacity:1;transform:none;background:#3a2d35}
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
 .metric{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);display:flex;gap:13px;align-items:center}
 .metric-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:21px;flex-shrink:0}
@@ -62,7 +63,12 @@ table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;colo
 .donut:before{content:"";width:100px;height:100px;border-radius:50%;background:#222630;position:absolute}.donut-center{position:relative;text-align:center;font-size:12px;color:#c0c8d8}.donut-center strong{display:block;color:#f4f6fc;font-size:25px}
 .legend{display:grid;gap:13px;width:100%}.legend-row{display:flex;justify-content:space-between;font-size:13px;color:#c0c8d8}.legend-row span:first-child:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;background:#91d1ba}.legend-row:nth-child(2) span:first-child:before{background:#f0c78d}.legend-row:nth-child(3) span:first-child:before{background:#e8aab8}
 .hidden{display:none!important}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field{display:grid;gap:6px}.field label{font-size:13px;color:#d0d8e8;font-weight:600}.field input,.field select,.field textarea{border:1px solid #e2e8f2;border-radius:11px;padding:12px;background:#191d25;color:#edf1fa;font:inherit;outline-color:#a99be7;color:#f4f6fc}.field.full{grid-column:1/-1}.formactions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field{display:grid;gap:6px}.field label{font-size:13px;color:#d0d8e8;font-weight:600}.field input,.field select,.field textarea{border:1px solid #e2e8f2;border-radius:11px;padding:12px;background:#191d25;color:#edf1fa;font:inherit;outline-color:#a99be7;color:#f4f6fc}
+/* Selector de fecha visible en el tema oscuro */
+#payDate{color-scheme:dark;cursor:pointer;min-height:46px;}
+#payDate::-webkit-calendar-picker-indicator{opacity:1;filter:brightness(0) invert(1);cursor:pointer;width:20px;height:20px;background-color:transparent;}
+#payDate::-webkit-datetime-edit{color:#f4f6fc;}
+#payDate::-webkit-datetime-edit-fields-wrapper{color:#f4f6fc;}.field.full{grid-column:1/-1}.formactions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
 .people-table{margin-top:18px}.empty{padding:30px;text-align:center;color:#93a0b5}
 @media(max-width:1150px){.metrics{grid-template-columns:repeat(2,1fr)}.grid-main,.lower{grid-template-columns:1fr}}
 @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{padding:13px;gap:12px}.brand{padding:5px}.nav{grid-template-columns:repeat(2,1fr)}.nav button{padding:10px;font-size:12px}.side-note{display:none}.main{padding:18px}.pagehead{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr 1fr}.metric{padding:12px}.metric strong{font-size:17px}.metric-icon{width:38px;height:38px}.topuser{font-size:12px}.panel{padding:15px;overflow:auto}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
@@ -76,6 +82,24 @@ input::placeholder,textarea::placeholder{color:#929db3;opacity:1}
 select option{background:#222630;color:#f4f6fc}
 .search input{background:transparent;color:#f4f6fc}
 .topuser{color:#e1e8f5}
+
+/* Responsive refinado: escritorio, tablet y móvil */
+@media (max-width:1024px){.app{grid-template-columns:220px minmax(0,1fr)}.main{padding:22px}.grid-main,.lower{grid-template-columns:1fr}.panel{min-width:0}}
+@media (max-width:820px){.app{grid-template-columns:1fr}.sidebar{position:relative;width:100%;padding:12px 16px}.brand{padding:4px 0}.nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.nav button{justify-content:center;white-space:normal;text-align:center}.main{padding:16px}.topbar{gap:10px;flex-wrap:wrap}.search{flex:1;min-width:150px}.pagehead{gap:12px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.field.full{grid-column:1/-1}}
+@media (max-width:520px){.main{padding:12px}.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.nav button{font-size:11px;padding:9px 6px}.metrics{grid-template-columns:1fr}.metric{min-width:0}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.pagehead h2{font-size:23px}.panel{padding:12px;border-radius:14px}.panelhead{align-items:flex-start;flex-direction:column}.topuser{width:100%;justify-content:flex-end}table{font-size:12px}th,td{padding:9px 7px}.calendar-item{grid-template-columns:1fr!important;gap:7px!important}.calendar-date{display:flex;align-items:center;gap:10px}}
+ 
+/* Administrador: ventana emergente de nuevo préstamo */
+.admin-loan-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:18px;padding:26px 28px;background:linear-gradient(120deg,#172b49,#244d78 68%,#2c668b);border:1px solid #315a80;color:#fff;box-shadow:0 14px 35px rgba(9,27,49,.18)}
+.admin-hero-copy{max-width:650px}.admin-hero-copy h3{font-size:24px;margin:8px 0;color:#fff}.admin-hero-copy p{color:#d5e4f3;line-height:1.55;margin:0}.hero-kicker{font-size:10px;letter-spacing:1.8px;font-weight:800;color:#8fc7f4}.admin-new-loan{white-space:nowrap;padding:13px 20px!important;box-shadow:0 8px 22px #071b3638}
+.admin-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:22px}.admin-modal.hidden{display:none}.admin-modal-backdrop{position:absolute;inset:0;background:rgba(5,13,26,.72);backdrop-filter:blur(6px)}.admin-modal-card{position:relative;width:min(850px,100%);max-height:92vh;overflow:auto;background:var(--panel,#fff);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 90px #0005;padding:28px 30px 24px;animation:modalIn .2s ease-out}.admin-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:22px}.admin-modal-head h2{font-size:25px;margin:7px 0 6px}.admin-modal-head p{margin:0;color:var(--muted,#7a88a2)}.modal-close{border:0;background:var(--surface,#f2f5f9);color:var(--text);border-radius:12px;width:38px;height:38px;font-size:25px;cursor:pointer}.modal-section-title{display:flex;align-items:center;gap:12px;margin:20px 0 14px}.step-bubble{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#e5f1ff;color:#2266a2;font-weight:800}.modal-section-title b{display:block;color:var(--text)}.modal-section-title small{display:block;color:var(--muted,#7a88a2);margin-top:3px}.admin-modal-card .formgrid{gap:15px}.admin-loan-summary{margin-top:20px;padding:16px 18px;border-radius:14px;background:linear-gradient(120deg,#edf5ff,#f4f8fc);border:1px solid #d8e8f8;color:#23466b;line-height:1.6}.admin-modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}@media(max-width:650px){.admin-loan-hero{align-items:flex-start;flex-direction:column;padding:22px}.admin-new-loan{width:100%}.admin-modal{padding:10px}.admin-modal-card{padding:20px 16px;border-radius:16px;max-height:96vh}.admin-modal-head h2{font-size:21px}.admin-modal-actions{flex-direction:column-reverse}.admin-modal-actions button{width:100%}}
+
+/* Calendario de cobros: presentación ejecutiva */
+.calendar-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 27px;margin-bottom:16px;border:1px solid #2b5575;border-radius:20px;background:linear-gradient(120deg,#142b43,#1d4a70 65%,#28628b);box-shadow:0 12px 28px #081a2a35}
+.calendar-hero h3{margin:5px 0;color:#fff;font-size:25px}.calendar-hero p{margin:0;color:#d5e7f6;font-size:13px}.calendar-hero .kicker{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#a9d8ff}
+.calendar-pill{padding:9px 13px;border-radius:30px;background:#ffffff15;border:1px solid #ffffff30;color:#e4f4ff;font-size:12px;font-weight:700;white-space:nowrap}
+.calendar-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:16px}.calendar-stat{background:#222630;border:1px solid #3b4252;border-radius:16px;padding:17px 19px}.calendar-stat small{display:block;color:#aebbd0;font-size:12px;margin-bottom:6px}.calendar-stat strong{font-size:21px;color:#f5f7fc;letter-spacing:-.4px}.calendar-tools{display:flex;gap:12px;align-items:center;margin:0 0 17px;flex-wrap:wrap}.calendar-search{flex:1;min-width:220px;display:flex;align-items:center;gap:10px;border:1px solid #414858;background:#191d25;border-radius:12px;padding:11px 14px}.calendar-search input{background:transparent;border:0;outline:0;color:#f4f6fc;width:100%;font:inherit}.calendar-tools select{min-width:175px;border:1px solid #414858;border-radius:12px;padding:12px;background:#191d25;color:#f4f6fc;font:inherit}
+.calendar-list{display:grid;gap:10px}.calendar-item{display:grid;grid-template-columns:105px minmax(0,1fr) 180px;align-items:center;gap:16px;padding:15px 17px;border:1px solid #343b4b;border-radius:14px;background:linear-gradient(110deg,#252a35,#222630);transition:.18s}.calendar-item:hover{border-color:#607da7;transform:translateY(-1px)}.calendar-datebox{border-radius:12px;background:#2e3545;padding:10px;text-align:center}.calendar-datebox .day{font-size:22px;font-weight:800;color:#c5b8ff;line-height:1.1}.calendar-datebox .month{font-size:11px;color:#c2ccdc;text-transform:uppercase;letter-spacing:.6px}.calendar-datebox .quota{font-size:10px;color:#91a5c2;margin-top:5px}.calendar-person{font-weight:750;color:#f5f7fc;font-size:14px}.calendar-meta{color:#aebbd0;font-size:12px;margin-top:4px}.calendar-amount{text-align:right}.calendar-amount strong{display:block;font-size:17px;color:#a9dfce}.calendar-amount small{display:block;color:#aebbd0;font-size:11px;margin-top:3px}.calendar-empty{padding:35px 15px;text-align:center;color:#aebbd0;border:1px dashed #414858;border-radius:14px}
+@media(max-width:650px){.calendar-summary{grid-template-columns:1fr}.calendar-hero{align-items:flex-start;flex-direction:column}.calendar-item{grid-template-columns:75px minmax(0,1fr)!important;gap:10px!important}.calendar-amount{grid-column:2;text-align:left}.calendar-datebox .day{font-size:19px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -86,6 +110,88 @@ select option{background:#222630;color:#f4f6fc}
 #bbGate input{width:100%;padding:13px;border-radius:11px;border:1px solid #3b4252;background:#191d25;color:#f4f6fc;margin:7px 0 12px}
 #bbGate button{width:100%;padding:13px;border:0;border-radius:11px;background:#8f9fe0;color:#fff;font-weight:700;cursor:pointer}
 #bbGate .gateerr{color:#e9aebc;min-height:22px;font-size:13px}
+#bbGate .password-wrap{position:relative;margin:7px 0 12px}
+#bbGate .password-wrap input{margin:0;padding-right:48px}
+#bbGate .toggle-password{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;padding:0;border:0;background:transparent;color:#c0c8d8;cursor:pointer;font-size:18px;display:grid;place-items:center}
+#bbGate .toggle-password:hover{background:#343a49;border-radius:8px}
+</style>
+<style>
+
+
+/* === Mejora visual: modal de nuevo préstamo, paleta clara y alto contraste === */
+.admin-modal-backdrop{background:rgba(10,22,42,.62);backdrop-filter:blur(7px)}
+.admin-modal-card{
+  --panel:#ffffff;--text:#20334d;--line:#dce6f1;--muted:#64758b;
+  background:#fff!important;color:#20334d!important;
+  border:1px solid #d8e5f2!important;
+  box-shadow:0 32px 100px rgba(4,18,40,.32)!important;
+}
+.admin-modal-head{border-bottom:1px solid #e4edf6!important;padding-bottom:20px!important}
+.admin-modal-head h2{color:#183b63!important;font-weight:800;letter-spacing:-.5px}
+.admin-modal-head p{color:#65778d!important}
+.admin-modal-head .hero-kicker{color:#347db7!important}
+.admin-modal-card .modal-close{background:#edf4fb!important;color:#315b83!important;border:1px solid #d8e6f3!important}
+.admin-modal-card .modal-close:hover{background:#dcecfb!important;color:#163d65!important}
+.admin-modal-card .modal-section-title{
+  background:linear-gradient(90deg,#f1f7fd,#f8fbff);
+  border:1px solid #e2edf7;border-radius:13px;padding:12px 14px;margin:22px 0 14px;
+}
+.admin-modal-card .step-bubble{
+  background:linear-gradient(135deg,#d9eaff,#bcdcff)!important;color:#1f5d96!important;
+  box-shadow:inset 0 0 0 1px #b8d6f4;font-size:13px
+}
+.admin-modal-card .modal-section-title b{color:#204c78!important;font-size:15px}
+.admin-modal-card .modal-section-title small{color:#71849a!important}
+.admin-modal-card .field label{color:#334d68!important;font-weight:700}
+.admin-modal-card .field input,
+.admin-modal-card .field select,
+.admin-modal-card .field textarea{
+  background:#fff!important;color:#20334d!important;
+  border:1px solid #cbd9e8!important;border-radius:11px!important;
+  box-shadow:0 2px 5px rgba(25,61,98,.035);
+}
+.admin-modal-card .field input::placeholder,
+.admin-modal-card .field textarea::placeholder{color:#9aaabd!important}
+.admin-modal-card .field input:focus,
+.admin-modal-card .field select:focus,
+.admin-modal-card .field textarea:focus{
+  outline:none!important;border-color:#5a9bd5!important;
+  box-shadow:0 0 0 3px rgba(90,155,213,.17)!important
+}
+.admin-modal-card .admin-loan-summary{
+  background:linear-gradient(120deg,#eaf4ff,#f2f8ff)!important;
+  border:1px solid #c9e0f6!important;color:#234d75!important;
+  box-shadow:inset 4px 0 0 #5b9bd2
+}
+.admin-modal-actions{border-top:1px solid #e3edf6!important}
+.admin-modal-actions button{border-radius:11px!important;font-weight:700}
+.admin-modal-actions button[type="submit"]{
+  background:linear-gradient(135deg,#24669e,#347fb8)!important;
+  color:#fff!important;border:1px solid #286b9f!important;
+  box-shadow:0 7px 16px rgba(35,103,158,.2)
+}
+.admin-modal-actions button[type="submit"]:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.admin-modal-actions button:not([type="submit"]){background:#edf3f9!important;color:#38536e!important;border:1px solid #d7e3ef!important}
+@media(max-width:650px){
+ .admin-modal-card .modal-section-title{padding:10px 11px}
+ .admin-modal-card .admin-loan-summary{padding:13px}
+}
+
+
+/* Buscador de personas: texto negro y fondo blanco para lectura clara */
+#adminSearch{background:#fff!important;color:#111827!important;border:1px solid #cbd5e1!important;min-width:230px}
+#adminSearch::placeholder{color:#64748b!important;opacity:1}
+#adminSearch:focus{outline:none;border-color:#5797cf!important;box-shadow:0 0 0 3px #5797cf22}
+#adminSearch{font-weight:500}
+
+/* Consultar cartera: tablero ejecutivo */
+.portfolio-intro{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 25px;margin-bottom:16px;border:1px solid #24496c;border-radius:18px;background:linear-gradient(120deg,#102b46,#17466c 62%,#23628b);box-shadow:0 12px 28px #102b4620;color:#fff}
+.portfolio-kicker{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#a9d8ff}.portfolio-intro h3{font-size:25px;margin:7px 0 5px;color:#fff}.portfolio-intro p{margin:0;color:#d2e4f4;font-size:13px}.portfolio-live{font-size:11px;font-weight:700;white-space:nowrap;color:#d8f9e8;background:#ffffff15;border:1px solid #ffffff2c;border-radius:30px;padding:8px 12px}
+.portfolio-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.portfolio-kpi{padding:17px;border-radius:15px;background:var(--panel,#fff);border:1px solid var(--line);box-shadow:0 5px 18px #0b20300a}.portfolio-kpi .kpi-label{font-size:10px;letter-spacing:.6px;text-transform:uppercase;font-weight:800;color:#8292a8}.portfolio-kpi strong{display:block;font-size:19px;color:#eaf2ff;margin:8px 0 4px;overflow-wrap:anywhere}.portfolio-kpi small{font-size:11px;color:#91a3bb}.portfolio-kpi .kpi-icon{float:right;font-size:19px;color:#83b9e8;background:#244665;border-radius:10px;padding:7px}
+.portfolio-query{padding:0!important;overflow:hidden}.portfolio-query-title{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px 13px}.portfolio-query-title h4{margin:0;color:#e8f1fc;font-size:16px}.portfolio-query-title p{margin:5px 0 0;color:#8fa3bc;font-size:12px}.portfolio-count{background:#203d5b;color:#b9dcff;padding:7px 11px;border-radius:9px;font-size:11px;font-weight:800;white-space:nowrap}.portfolio-filters{display:flex;gap:10px;padding:0 22px 17px}.portfolio-search{display:flex;align-items:center;gap:9px;flex:1;background:#fff;border:1px solid #cbd8e6;border-radius:11px;padding:0 12px;color:#5e7b98}.portfolio-search input{width:100%;border:0!important;outline:0!important;background:transparent!important;color:#1b2f45!important;padding:11px 0!important}.portfolio-search input::placeholder{color:#8292a5}.portfolio-filters select{min-width:175px;background:#fff!important;color:#243b52!important;border:1px solid #cbd8e6!important;border-radius:11px;padding:10px 12px}
+.portfolio-cards{display:grid;gap:12px;padding:0 22px 22px}.portfolio-card{border:1px solid #29445e;border-radius:15px;overflow:hidden;background:linear-gradient(135deg,#142b42,#102338)}.portfolio-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;background:#1a3651;border-bottom:1px solid #29445e}.portfolio-person{display:flex;align-items:center;gap:11px;min-width:0}.portfolio-avatar{display:grid;place-items:center;width:39px;height:39px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#b9dcff,#6eafe4);color:#123b60;font-weight:900}.portfolio-person h5{margin:0;color:#f0f6ff;font-size:14px;overflow-wrap:anywhere}.portfolio-person p{margin:4px 0 0;color:#91a9c3;font-size:11px}.portfolio-card-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}.portfolio-badge{padding:6px 10px;border-radius:30px;font-size:10px;font-weight:900;white-space:nowrap}.portfolio-badge.vigente{background:#143e37;color:#8be0b9}.portfolio-badge.vencido{background:#55283a;color:#ffabc2}.portfolio-badge.pagado{background:#243c66;color:#b8d3ff}.portfolio-card-body{padding:16px 17px}.portfolio-values{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.portfolio-value{padding:11px;border:1px solid #263f58;border-radius:11px;background:#102238}.portfolio-value span{display:block;color:#819bb5;font-size:10px;margin-bottom:6px}.portfolio-value b{display:block;color:#e8f3ff;font-size:13px;overflow-wrap:anywhere}.portfolio-progress{margin-top:14px}.portfolio-progress-label{display:flex;justify-content:space-between;gap:10px;color:#91a8c1;font-size:11px;margin-bottom:7px}.portfolio-progress-track{height:7px;background:#263d54;border-radius:20px;overflow:hidden}.portfolio-progress-track i{display:block;height:100%;background:linear-gradient(90deg,#5a9bd4,#77d4b4);border-radius:20px}.portfolio-card-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px;color:#8fa6bf;font-size:11px}.portfolio-card-foot strong{color:#dcecff}.portfolio-empty{padding:36px 15px;text-align:center;color:#90a5bd;background:#101f31;border:1px dashed #2a435b;border-radius:13px}
+@media(max-width:850px){.portfolio-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-values{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-intro{align-items:flex-start;flex-direction:column}.portfolio-filters{flex-direction:column}.portfolio-filters select{width:100%}}
+
 </style>
 </head>
 
@@ -94,7 +200,7 @@ select option{background:#222630;color:#f4f6fc}
 <div style="font-size:28px;margin-bottom:8px">↗ <b>BearBank</b></div>
 <h2>Acceso privado</h2><p>Ingresa con el correo y contraseña del administrador.</p>
 <label style="color:#d0d8e8">Correo administrador</label><input id="bbEmail" type="email" autocomplete="username" placeholder="correo@ejemplo.com">
-<label style="color:#d0d8e8">Contraseña</label><input id="bbPassword" type="password" autocomplete="current-password" placeholder="Contraseña Supabase">
+<label style="color:#d0d8e8">Contraseña</label><div class="password-wrap"><input id="bbPassword" type="password" autocomplete="current-password" placeholder="Contraseña"><button type="button" class="toggle-password" id="bbTogglePassword" aria-label="Mostrar contraseña" title="Mostrar contraseña">◉</button></div>
 <button id="bbLogin">Ingresar</button><div class="gateerr" id="bbError"></div>
 </div></div>
 
@@ -114,20 +220,20 @@ select option{background:#222630;color:#f4f6fc}
  <section id="dashboard" class="view">
   <div class="pagehead"><div><div class="eyebrow">Inicio · Resumen</div><h2>Dashboard</h2><p class="subtitle">Una visión clara de tu cartera de préstamos.</p></div><button class="btn soft">▣　Este mes　⌄</button></div>
   <div class="metrics">
-   <div class="metric"><div class="metric-icon">▤</div><div><label>Total prestado</label><strong>$ 0</strong></div></div>
-   <div class="metric"><div class="metric-icon">↗</div><div><label>Total recuperado</label><strong>$ 0</strong></div></div>
-   <div class="metric"><div class="metric-icon">％</div><div><label>Intereses cobrados</label><strong>$ 0</strong></div></div>
-   <div class="metric"><div class="metric-icon">◷</div><div><label>Saldo pendiente</label><strong>$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">▤</div><div><label>Total prestado</label><strong id="dashLent">$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">↗</div><div><label>Total recuperado</label><strong id="dashRecovered">$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">％</div><div><label>Intereses cobrados</label><strong id="dashInterest">$ 0</strong></div></div>
+   <div class="metric"><div class="metric-icon">◷</div><div><label>Saldo pendiente</label><strong id="dashPending">$ 0</strong></div></div>
   </div>
   <div class="grid-main">
    <div class="panel"><div class="panelhead"><div><h3>Flujo de cobros y pagos</h3><p>Comportamiento de los últimos meses</p></div><div class="chart-legend"><span><i class="dot"></i>Por cobrar</span><span><i class="dot mint"></i>Cobrado</span></div>
     <div class="chart"><div class="bar-group"><i class="bar" style="height:35%"></i><i class="bar alt" style="height:22%"></i><span class="month">Ago</span></div><div class="bar-group"><i class="bar" style="height:48%"></i><i class="bar alt" style="height:28%"></i><span class="month">Sep</span></div><div class="bar-group"><i class="bar" style="height:53%"></i><i class="bar alt" style="height:38%"></i><span class="month">Oct</span></div><div class="bar-group"><i class="bar" style="height:65%"></i><i class="bar alt" style="height:42%"></i><span class="month">Nov</span></div><div class="bar-group"><i class="bar" style="height:72%"></i><i class="bar alt" style="height:52%"></i><span class="month">Dic</span></div><div class="bar-group"><i class="bar" style="height:85%"></i><i class="bar alt" style="height:60%"></i><span class="month">Ene</span></div></div>
    </div>
-   <div class="month-card"><div class="small">RESUMEN MENSUAL</div><h3>Cobros de este mes</h3><div class="amount">$ 0</div><div class="small">Sin pagos registrados todavía</div><div class="progress"><span style="width:0"></span></div><div class="month-stats"><div><label>Recibido</label><strong>$ 0</strong></div><div><label>Pendiente</label><strong>$ 0</strong></div></div></div>
+   <div class="month-card"><div class="small">RESUMEN MENSUAL</div><h3>Cobros de este mes</h3><div class="amount" id="dashMonthPaid">$ 0</div><div class="small" id="dashMonthCaption">Sin pagos registrados todavía</div><div class="progress"><span style="width:0"></span></div><div class="month-stats"><div><label>Recibido</label><strong id="dashMonthReceived">$ 0</strong></div><div><label>Pendiente</label><strong id="dashMonthPending">$ 0</strong></div></div></div>
   </div>
   <div class="lower">
-   <div class="panel"><div class="panelhead"><div><h3>Próximos cobros</h3><p>Cuotas con vencimiento próximo</p></div><button class="btn soft" onclick="go('calendario')">Ver calendario →</button></div><table><thead><tr><th>Persona</th><th>Préstamo</th><th>Cuota</th><th>Vencimiento</th><th>Estado</th></tr></thead><tbody><tr><td colspan="5" class="empty">Aquí aparecerán los próximos cobros cuando registres préstamos.</td></tr></tbody></table></div>
-   <div class="panel"><div class="panelhead"><div><h3>Estado de la cartera</h3><p>Situación de tus préstamos</p></div></div><div class="portfolio"><div class="donut"><div class="donut-center"><strong>0</strong>Préstamos</div></div><div class="legend"><div class="legend-row"><span>Al día</span><b>0%</b></div><div class="legend-row"><span>Pendientes</span><b>0%</b></div><div class="legend-row"><span>Vencidos</span><b>0%</b></div></div></div></div>
+   <div class="panel"><div class="panelhead"><div><h3>Próximos cobros</h3><p>Cuotas con vencimiento próximo</p></div><button class="btn soft" onclick="go('calendario')">Ver calendario →</button></div><table><thead><tr><th>Persona</th><th>Préstamo</th><th>Cuota</th><th>Vencimiento</th><th>Estado</th></tr></thead><tbody id="dashUpcomingRows"><tr><td colspan="5" class="empty">Aquí aparecerán los próximos cobros cuando registres préstamos.</td></tr></tbody></table></div>
+   <div class="panel"><div class="panelhead"><div><h3>Estado de la cartera</h3><p>Situación de tus préstamos</p></div></div><div class="portfolio"><div class="donut"><div class="donut-center"><strong id="dashPortfolioCount">0</strong>Préstamos</div></div><div class="legend"><div class="legend-row"><span>Al día</span><b id="dashCurrentPct">0%</b></div><div class="legend-row"><span>Pendientes</span><b id="dashPendingPct">0%</b></div><div class="legend-row"><span>Vencidos</span><b id="dashLatePct">0%</b></div></div></div></div>
   </div>
  </section>
  <section id="personas" class="view hidden">
@@ -143,7 +249,7 @@ select option{background:#222630;color:#f4f6fc}
    </div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar persona</button></div></form>
   </div>
   <div id="loanForm" class="panel hidden"><div class="panelhead"><div><h3>Nuevo préstamo</h3><p>Datos del préstamo</p></div><button class="btn soft" onclick="showPeople()">← Volver a personas</button></div>
-   <form id="loanCreate"><div class="formgrid"><div class="field full"><label>Persona *</label><select id="loanPerson" required><option value="">Primero registra una persona</option></select></div><div class="field"><label>Capital (COP) *</label><input type="number" min="1" id="capital" required placeholder="Ej. 500000"></div><div class="field"><label>Interés único *</label><select id="interest"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div><div class="field"><label>Plazo (meses) *</label><input type="number" min="1" max="600" id="term" required value="6"></div><div class="field"><label>Fecha del préstamo *</label><input type="date" id="loanDate" required></div><div class="field"><label>Primer vencimiento (automático)</label><input type="date" id="firstDue" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="loanNotes" rows="2"></textarea></div></div><div id="loanCalc" style="margin-top:16px;color:#7a88a2"></div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar préstamo</button></div></form>
+   <form id="loanCreate"><div class="formgrid"><div class="field full"><label>Persona *</label><select id="loanPerson" required><option value="">Primero registra una persona</option></select></div><div class="field"><label>Capital (COP) *</label><input type="number" min="1" id="capital" required placeholder="Ej. 500000"></div><div class="field full"><label>Modalidad de pago *</label><select id="loanMode"><option value="cuota_fija">Cuota mensual fija</option><option value="capital_pendiente">Interés sobre capital pendiente</option></select></div><div class="field"><label>Interés mensual (%) *</label><select id="interest"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div><div class="field"><label>Plazo (meses) *</label><input type="number" min="1" max="600" id="term" required value="6"></div><div class="field"><label>Fecha del préstamo *</label><input type="date" id="loanDate" required></div><div class="field"><label>Primer vencimiento (automático)</label><input type="date" id="firstDue" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="loanNotes" rows="2"></textarea></div></div><div id="loanCalc" style="margin-top:16px;color:#7a88a2"></div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar préstamo</button></div></form>
   </div>
   <div class="panel people-table"><div class="panelhead"><div><h3>Personas registradas</h3><p id="peopleCount">0 personas</p></div><input id="peopleSearch" placeholder="Buscar..." style="border:1px solid var(--line);border-radius:10px;padding:9px 12px"></div><table><thead><tr><th>Nombre</th><th>Cédula</th><th>Celular</th><th>Préstamos</th><th>Acción</th></tr></thead><tbody id="peopleRows"><tr><td colspan="5" class="empty">Aún no hay personas registradas.</td></tr></tbody></table></div>
  </section>
@@ -152,21 +258,64 @@ select option{background:#222630;color:#f4f6fc}
 <div class="pagehead"><div><div class="eyebrow">Acceso restringido</div><h2>Administrador</h2><p class="subtitle">Personas, préstamos y pagos en una sola sesión.</p></div><span class="status ok">Administrador</span></div>
 <div class="admin-tabs actions" style="margin-bottom:18px"><button class="btn primary" onclick="adminTab('adminPeople',this)">Personas y Préstamos</button><button class="btn soft" onclick="adminTab('adminPayments',this)">Pagos</button><button class="btn soft" onclick="adminTab('adminPortfolio',this)">Consultar cartera</button><button class="btn soft" onclick="adminTab('adminReports',this)">Reportes</button></div>
 <div id="adminPeople" class="adminpane">
-<div class="panel" style="margin-bottom:18px"><div class="panelhead"><div><h3>Registrar persona + préstamo</h3><p>Registro de persona y préstamo</p></div></div>
-<form id="combinedForm"><div class="formgrid">
+<div class="panel admin-loan-hero"><div class="admin-hero-copy"><span class="hero-kicker">GESTIÓN DE CLIENTES</span><h3>Personas y préstamos</h3><p>Registra una persona junto con su préstamo, define la modalidad de pago y consulta la cartera desde un solo lugar.</p></div><button class="btn primary admin-new-loan" onclick="openAdminLoan()">＋ Ingresar nuevo préstamo</button></div>
+<div class="panel"><div class="panelhead"><div><h3>Personas registradas</h3><p id="adminPeopleCount">0 personas</p></div><input id="adminSearch" placeholder="Buscar persona..." style="border:1px solid var(--line);border-radius:10px;padding:9px 12px"></div><table><thead><tr><th>Persona</th><th>Cédula</th><th>Celular</th><th>Préstamos</th><th>Detalle</th></tr></thead><tbody id="adminPeopleRows"><tr><td colspan="5" class="empty">Registra una persona para comenzar.</td></tr></tbody></table></div></div>
+<div id="adminLoanModal" class="admin-modal hidden" role="dialog" aria-modal="true" aria-labelledby="adminLoanTitle"><div class="admin-modal-backdrop" onclick="closeAdminLoan()"></div><div class="admin-modal-card"><div class="admin-modal-head"><div><span class="hero-kicker">NUEVO REGISTRO</span><h2 id="adminLoanTitle">Ingresar nuevo préstamo</h2><p>Completa los datos de la persona y configura su préstamo.</p></div><button type="button" class="modal-close" onclick="closeAdminLoan()" aria-label="Cerrar">×</button></div>
+<form id="combinedForm"><div class="modal-section-title"><span class="step-bubble">1</span><div><b>Datos de la persona</b><small>Información básica del titular</small></div></div><div class="formgrid">
 <div class="field full"><label>Nombre completo *</label><input id="pName" required placeholder="Nombre y apellidos"></div>
 <div class="field"><label>Cédula (opcional)</label><input id="pCedula" placeholder="Identificación"></div><div class="field"><label>Celular (opcional)</label><input id="pPhone" type="tel" placeholder="Número de contacto"></div>
 <div class="field"><label>Correo (opcional)</label><input id="pEmail" type="email" placeholder="correo@ejemplo.com"></div><div class="field"><label>Dirección (opcional)</label><input id="pAddress" placeholder="Dirección"></div>
-<div class="field"><label>Capital COP *</label><input id="pCapital" type="text" inputmode="numeric" autocomplete="off" required placeholder="500,000"></div><div class="field"><label>Interés (Choice) *</label><select id="pRate"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div>
-<div class="field"><label>Plazo en meses *</label><input id="pTerm" type="number" min="1" max="600" value="6" required></div><div class="field"><label>Fecha préstamo *</label><input id="pLoanDate" type="date" required></div><div class="field"><label>Primer vencimiento (automático)</label><input id="pFirstDue" type="date" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="pNotes" rows="2"></textarea></div>
-</div><div id="combinedCalc" style="margin-top:15px;background:#2b303b;padding:12px;border-radius:12px;color:#aab5ca">Completa el capital para calcular.</div><div class="formactions"><button type="reset" class="btn soft">Limpiar</button><button class="btn primary">Guardar persona y préstamo</button></div></form></div>
-<div class="panel"><div class="panelhead"><div><h3>Personas registradas</h3><p id="adminPeopleCount">0 personas</p></div><input id="adminSearch" placeholder="Buscar..." style="border:1px solid var(--line);border-radius:10px;padding:9px 12px"></div><table><thead><tr><th>Persona</th><th>Cédula</th><th>Celular</th><th>Préstamos</th><th>Detalle</th></tr></thead><tbody id="adminPeopleRows"><tr><td colspan="5" class="empty">Registra una persona para comenzar.</td></tr></tbody></table></div></div>
-<div id="adminPayments" class="adminpane hidden"><div class="panel"><h3>Registrar pago</h3><div class="formgrid"><div class="field full"><label>Préstamo</label><select id="payLoan"></select></div><div class="field"><label>Fecha</label><input id="payDate" type="date"></div><div class="field"><label>Monto recibido COP</label><input id="payAmount" type="number" min="1"></div><div class="field full"><label>Observación</label><input id="payNote"></div></div><div class="formactions"><button class="btn primary" onclick="savePayment()">Guardar pago</button></div><div id="paymentsList" style="margin-top:15px"></div></div></div>
-<div id="adminPortfolio" class="adminpane hidden"><div class="panel"><h3>Consultar cartera</h3><div id="portfolioList" class="empty">Sin préstamos todavía.</div></div></div>
+</div><div class="modal-section-title"><span class="step-bubble">2</span><div><b>Configuración del préstamo</b><small>Capital, modalidad, cuotas y fechas</small></div></div><div class="formgrid">
+<div class="field"><label>Capital (COP) *</label><input id="pCapital" type="text" inputmode="numeric" autocomplete="off" required placeholder="500,000"></div><div class="field"><label>Modalidad de pago *</label><select id="pMode"><option value="cuota_fija">Cuota mensual fija</option><option value="capital_pendiente">Interés sobre capital pendiente</option></select></div><div class="field"><label>Interés mensual (%) *</label><select id="pRate"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select></div>
+<div class="field"><label>Plazo (meses) *</label><input id="pTerm" type="number" min="1" max="600" value="6" required></div><div class="field"><label>Fecha del préstamo *</label><input id="pLoanDate" type="date" required></div><div class="field"><label>Primer vencimiento</label><input id="pFirstDue" type="date" required readonly></div><div class="field full"><label>Observaciones</label><textarea id="pNotes" rows="2" placeholder="Notas adicionales del préstamo"></textarea></div>
+</div><div id="combinedCalc" class="admin-loan-summary">Completa el capital para calcular la cuota estimada.</div><div class="admin-modal-actions"><button type="button" class="btn soft" onclick="closeAdminLoan()">Cancelar</button><button type="submit" class="btn primary">Guardar persona y préstamo</button></div></form></div></div>
+
+<!-- Modal profesional de detalle por persona -->
+<div id="personDetailModal" class="admin-modal hidden" role="dialog" aria-modal="true" aria-labelledby="personDetailTitle">
+ <div class="admin-modal-backdrop" onclick="closePersonDetail()"></div>
+ <div class="admin-modal-card person-detail-card">
+  <div class="admin-modal-head">
+   <div><span class="hero-kicker">EXPEDIENTE DE CLIENTE</span><h2 id="personDetailTitle">Detalle de persona</h2><p id="personDetailSubtitle">Resumen de préstamos y pagos</p></div>
+   <button type="button" class="modal-close" onclick="closePersonDetail()" aria-label="Cerrar">×</button>
+  </div>
+  <div id="personDetailContent"></div>
+  <div class="admin-modal-actions"><button type="button" class="btn soft" onclick="closePersonDetail()">Cerrar detalle</button></div>
+ </div>
+</div>
+<style>
+.person-detail-card{width:min(1100px,100%)!important;background:#fff!important;color:#24364b!important}
+.person-detail-card h2{color:#173e65!important}
+.person-detail-card .admin-modal-head p{color:#718096!important}
+.pd-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 20px}
+.pd-stat{background:linear-gradient(145deg,#f5f9fd,#edf5fc);border:1px solid #dce8f3;border-radius:14px;padding:15px}
+.pd-stat span{display:block;color:#64778d;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.pd-stat strong{display:block;color:#1f4c76;font-size:18px;margin-top:6px;overflow-wrap:anywhere}
+.pd-loan{border:1px solid #dce6f0;border-radius:16px;margin:15px 0;overflow:hidden;background:#fff}
+.pd-loan-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;background:linear-gradient(100deg,#eff6fc,#f8fbff);border-bottom:1px solid #e1ebf4}
+.pd-loan-head h3{margin:0;color:#214d75;font-size:16px}.pd-loan-head p{margin:4px 0 0;color:#71849a;font-size:12px}.pd-loan-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.pd-delete-loan{border:1px solid #f1c5ce;background:#fff1f3;color:#a52845;padding:7px 11px;border-radius:9px;font-size:12px;font-weight:800;cursor:pointer}.pd-delete-loan:hover{background:#ffe2e8;border-color:#e9a7b6}
+.pd-loan-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:15px 18px}
+.pd-meta label{display:block;font-size:11px;color:#73849a;margin-bottom:4px}.pd-meta b{color:#273f58;font-size:13px}
+.pd-table-wrap{overflow:auto;padding:0 15px 15px}
+.pd-table{min-width:680px;width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+.pd-table th{background:#eaf2f9;color:#48627b;padding:11px;text-align:left}
+.pd-table td{padding:11px;color:#344a60;border-bottom:1px solid #e8eef4;background:#fff}
+.pd-table tr:last-child td{border-bottom:0}
+.pd-pill{display:inline-flex;padding:5px 9px;border-radius:30px;font-size:11px;font-weight:800;white-space:nowrap}
+.pd-pill.ok{background:#e4f6ec;color:#188052}.pd-pill.pending{background:#fff4dc;color:#9b690d}.pd-pill.late{background:#fde9ed;color:#a33250}.pd-pill.paid{background:#e8efff;color:#345aa0}
+.pd-section-label{font-size:13px;color:#45617b;font-weight:800;margin:20px 0 10px}
+.pd-empty{padding:20px;text-align:center;color:#73849a;background:#f7fafc;border-radius:12px}
+@media(max-width:700px){.pd-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-loan-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-loan-head{align-items:flex-start;flex-direction:column}}
+</style>
+<div id="adminPayments" class="adminpane hidden"><div class="panel"><h3>Registrar pago</h3><div class="formgrid"><div class="field full"><label>Buscar préstamo</label><input id="payLoanSearch" type="search" placeholder="Escribe nombre de persona o código del préstamo..."></div><div class="field full"><label>Préstamo</label><select id="payLoan"><option value="">Selecciona préstamo</option></select><small id="payLoanSearchHint" style="color:#8b9ab0">También puedes elegirlo directamente de la lista.</small></div><div class="field"><label>Fecha del pago</label><input id="payDate" type="date" required></div><div class="field"><label>Monto recibido (COP)</label><input id="payAmount" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div><div class="field full"><label>Observación</label><input id="payNote" placeholder="Observación opcional"></div></div><div class="formactions"><button class="btn primary" onclick="savePayment()">Guardar pago</button></div><div id="paymentsList" style="margin-top:15px"></div></div></div>
+<div id="adminPortfolio" class="adminpane hidden">
+ <div class="portfolio-intro"><div><span class="portfolio-kicker">CENTRO DE ANÁLISIS</span><h3>Consultar cartera</h3><p>Seguimiento integral de préstamos, recaudo y saldos por cliente.</p></div><span class="portfolio-live">● Datos actualizados</span></div>
+ <div class="portfolio-kpis" id="portfolioKpis"></div>
+ <div class="panel portfolio-query"><div class="portfolio-query-title"><div><h4>Detalle de préstamos</h4><p>Busca por cliente, cédula o código de préstamo y filtra por estado.</p></div><span id="portfolioCount" class="portfolio-count">0 registros</span></div><div class="portfolio-filters"><div class="portfolio-search"><span>⌕</span><input id="portfolioSearch" placeholder="Buscar cliente, cédula o préstamo…"></div><select id="portfolioStatus"><option value="all">Todos los estados</option><option value="vigente">Vigentes</option><option value="vencido">Vencidos</option><option value="pagado">Pagados</option></select></div><div id="portfolioList" class="portfolio-cards"></div></div>
+</div>
 <div id="adminReports" class="adminpane hidden"><div class="panel"><h3>Reportes</h3><div id="reportSummary"></div></div></div>
 </section>
  <section id="pagos" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Movimientos</div><h2>Pagos</h2><p class="subtitle">Registra y consulta los pagos recibidos.</p></div><button class="btn primary" onclick="alert('La pantalla de registro de pagos se habilitará en la siguiente etapa.')">＋ Registrar pago</button></div><div class="panel empty">Los pagos aparecerán aquí cuando registres movimientos.</div></section>
- <section id="calendario" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Planificación</div><h2>Calendario de Cobros</h2><p class="subtitle">Consulta vencimientos y cuotas programadas.</p></div></div><div class="panel empty">Consulta los próximos vencimientos de la cartera.</div></section>
+ <section id="calendario" class="view hidden"><div class="calendar-hero"><div><span class="kicker">PLANIFICACIÓN FINANCIERA</span><h3>Calendario de cobros</h3><p>Agenda de cuotas futuras, fechas de vencimiento y recaudo esperado.</p></div><span class="calendar-pill">● Proyección automática</span></div><div class="calendar-summary"><div class="calendar-stat"><small>Cuotas programadas</small><strong id="calCount">0</strong></div><div class="calendar-stat"><small>Recaudo esperado</small><strong id="calTotal">$ 0</strong></div><div class="calendar-stat"><small>Próximo vencimiento</small><strong id="calNext">—</strong></div></div><div class="panel"><div class="panelhead"><div><h3>Agenda de próximos cobros</h3><p>Listado ordenado por fecha, con detalle por cliente y préstamo.</p></div><span class="calendar-pill">Hasta 100 cuotas</span></div><div class="calendar-tools"><div class="calendar-search"><span>⌕</span><input id="calendarSearch" type="search" placeholder="Buscar cliente, cédula o código de préstamo…"></div><select id="calendarFilter"><option value="all">Todas las fechas</option><option value="7">Próximos 7 días</option><option value="30">Próximos 30 días</option></select></div><div id="calendarUpcoming" class="calendar-list"><div class="calendar-empty">Registra un préstamo para proyectar sus cobros.</div></div></div></section>
  <section id="recordatorios" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Seguimiento</div><h2>Recordatorios</h2><p class="subtitle">Organiza los avisos de cobro.</p></div></div><div class="panel empty">Recordatorios de próximos vencimientos.</div></section>
  <section id="reportes" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Análisis</div><h2>Reportes</h2><p class="subtitle">Resumen de resultados de tu cartera.</p></div></div><div class="panel empty">Los reportes estarán disponibles con información registrada.</div></section>
  <section id="configuracion" class="view hidden"><div class="pagehead"><div><div class="eyebrow">Preferencias</div><h2>Configuración</h2><p class="subtitle">Ajustes generales de la plataforma.</p></div></div><div class="panel"><p>Moneda: <strong>COP · Peso colombiano</strong></p><p>Interés: <strong>Único (5%, 10% o 15%)</strong></p><p>Mora: <strong>No se cobra interés moratorio</strong></p></div></section>
@@ -180,40 +329,199 @@ const formatCOPInput=v=>{let n=parseCOP(v);return n?new Intl.NumberFormat('en-US
 ['capital','pCapital'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.addEventListener('input',()=>{el.value=el.value.replace(/[^0-9]/g,'');});el.addEventListener('blur',()=>{el.value=formatCOPInput(el.value);});el.addEventListener('focus',()=>{el.value=String(parseCOP(el.value)||'');});});
 function go(view){if(view==='personas')view='admin';document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(view)?.classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='dashboard')refreshDashboard();}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
+function openAdminLoan(){const m=document.getElementById('adminLoanModal');m.classList.remove('hidden');document.body.style.overflow='hidden';pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);combinedCalc();setTimeout(()=>pName.focus(),80)}
+function closeAdminLoan(){document.getElementById('adminLoanModal').classList.add('hidden');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAdminLoan()});
 function showPeople(){document.getElementById('peopleForm').classList.remove('hidden');document.getElementById('loanForm').classList.add('hidden')}
 function showLoan(){document.getElementById('peopleForm').classList.add('hidden');document.getElementById('loanForm').classList.remove('hidden');fillPeopleSelect()}
 function fillPeopleSelect(){let s=document.getElementById('loanPerson');s.innerHTML='<option value="">Selecciona una persona</option>'+people.map(p=>`<option value="${p.id}">${esc(p.nombre)}</option>`).join('')}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 async function savePersonData(p){const {data,error}=await bbClient.from('personas').insert({nombre:p.nombre,cedula:p.cedula||null,celular:p.celular||null,correo:p.correo||null,direccion:p.direccion||null,notas:p.notas||null}).select().single();if(error)throw error;return {...p,id:data.id};}
 document.getElementById('personForm').onsubmit=async e=>{e.preventDefault();let f=new FormData(e.target),p={nombre:f.get('nombre').trim(),cedula:f.get('cedula').trim(),celular:f.get('celular').trim(),correo:f.get('correo').trim(),direccion:f.get('direccion').trim(),notas:f.get('notas').trim()};try{p=await savePersonData(p);people.unshift(p);e.target.reset();renderPeople();fillPeopleSelect();refreshDashboard();alert('Persona guardada en Supabase.')}catch(err){alert('No se pudo guardar la persona: '+(err.message||err));}};
-function renderPeople(){let q=(document.getElementById('peopleSearch').value||'').toLowerCase(),list=people.filter(p=>(p.nombre+' '+p.cedula+' '+p.celular).toLowerCase().includes(q));document.getElementById('peopleCount').textContent=people.length+' persona(s)';document.getElementById('peopleRows').innerHTML=list.length?list.map(p=>`<tr><td><div class="person"><span class="mini-avatar">${esc((p.nombre||'').slice(0,2).toUpperCase())}</span>${esc(p.nombre)}</div></td><td>${esc(p.cedula)||'—'}</td><td>${esc(p.celular)||'—'}</td><td>${loans.filter(l=>String(l.person)===String(p.id)).length}</td><td><button class="btn soft" onclick="personLoans(${p.id})">Ver préstamos</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">No se encontraron personas.</td></tr>'}
+function renderPeople(){let q=(document.getElementById('peopleSearch').value||'').toLowerCase(),list=people.filter(p=>(p.nombre+' '+p.cedula+' '+p.celular).toLowerCase().includes(q));document.getElementById('peopleCount').textContent=people.length+' persona(s)';document.getElementById('peopleRows').innerHTML=list.length?list.map(p=>`<tr><td><div class="person"><span class="mini-avatar">${esc((p.nombre||'').slice(0,2).toUpperCase())}</span>${esc(p.nombre)}</div></td><td>${esc(p.cedula)||'—'}</td><td>${esc(p.celular)||'—'}</td><td>${loans.filter(l=>String(l.person)===String(p.id)).length}</td><td><div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><button class="btn soft" onclick="personLoans(${p.id})">Ver préstamos</button><button class="btn person-delete" title="Eliminar persona" onclick="deletePerson(${p.id})">Eliminar</button></div></td></tr>`).join(''):'<tr><td colspan="5" class="empty">No se encontraron personas.</td></tr>'}
+async function deletePerson(id){
+ const p=people.find(x=>String(x.id)===String(id));
+ if(!p)return;
+ const ls=loans.filter(l=>String(l.person)===String(id));
+ const payCount=payments.filter(x=>ls.some(l=>String(l.id)===String(x.loanId))).length;
+ const ok=confirm(`¿Eliminar definitivamente a ${p.nombre}?\\n\\nSe eliminarán también ${ls.length} préstamo(s) y ${payCount} pago(s) asociados. Esta acción no se puede deshacer.`);
+ if(!ok)return;
+ try{
+  // Borrar pagos y préstamos vinculados antes de borrar la persona.
+  for(const l of ls){
+   const dp=await bbClient.from('pagos').delete().eq('prestamo_id',l.id);
+   if(dp.error)throw new Error('No se pudieron eliminar los pagos del préstamo '+(l.code||l.id)+': '+dp.error.message);
+  }
+  if(ls.length){
+   const dl=await bbClient.from('prestamos').delete().eq('persona_id',id);
+   if(dl.error)throw new Error('No se pudieron eliminar los préstamos asociados: '+dl.error.message);
+  }
+  const dperson=await bbClient.from('personas').delete().eq('id',id);
+  if(dperson.error)throw new Error('No se pudo eliminar la persona: '+dperson.error.message);
+  people=people.filter(x=>String(x.id)!==String(id));
+  loans=loans.filter(l=>String(l.person)!==String(id));
+  payments=payments.filter(x=>!ls.some(l=>String(l.id)===String(x.loanId)));
+  renderPeople();fillPeopleSelect();refreshAdmin();refreshPayLoans();renderPortfolio();renderReports();renderPaymentHistory();refreshDashboard();
+  alert('Persona eliminada correctamente.');
+ }catch(err){alert('No se pudo completar la eliminación: '+(err.message||err));}
+}
 document.getElementById('peopleSearch').oninput=renderPeople;
-function personLoans(id){let p=people.find(x=>String(x.id)===String(id)),ls=loans.filter(l=>String(l.person)===String(id));alert((p?.nombre||'Persona')+'\\n'+(ls.length?ls.map(l=>l.code+' · '+money(l.total)+' · '+l.term+' meses · '+l.status).join('\\n'):'Sin préstamos registrados.'))}
-function calcLoan(){let c=parseCOP(document.getElementById('capital').value),r=+document.getElementById('interest').value||0,t=+document.getElementById('term').value||1,total=c*(1+r/100);document.getElementById('loanCalc').textContent=`Interés total: ${money(c*r/100)} · Total pactado: ${money(total)} · Cuota mensual: ${money(total/t)}`}
-['capital','interest','term'].forEach(id=>document.getElementById(id).addEventListener('input',calcLoan));
+function closePersonDetail(){document.getElementById('personDetailModal').classList.add('hidden');document.body.style.overflow='';}
+function personLoans(id){
+ const p=people.find(x=>String(x.id)===String(id)),ls=loans.filter(l=>String(l.person)===String(id));
+ if(!p)return;
+ const modal=document.getElementById('personDetailModal'),host=document.getElementById('personDetailContent');
+ document.getElementById('personDetailTitle').textContent=p.nombre||'Detalle de persona';
+ document.getElementById('personDetailSubtitle').textContent=[p.cedula?'Cédula '+p.cedula:'',p.celular||'',p.correo||''].filter(Boolean).join(' · ')||'Resumen de préstamos y pagos';
+ const paidPerson=payments.filter(x=>ls.some(l=>String(l.id)===String(x.loanId))).reduce((a,x)=>a+x.amount,0);
+ const pending=ls.reduce((a,l)=>{let z=amortization(l);return a+z.balance+z.interestDue+z.accruedToToday},0);
+ host.innerHTML=`<div class="pd-overview">
+ <div class="pd-stat"><span>Préstamos</span><strong>${ls.length}</strong></div>
+ <div class="pd-stat"><span>Total prestado</span><strong>${money(ls.reduce((a,l)=>a+l.capital,0))}</strong></div>
+ <div class="pd-stat"><span>Total pagado</span><strong>${money(paidPerson)}</strong></div>
+ <div class="pd-stat"><span>Saldo pendiente*</span><strong>${money(pending)}</strong></div></div>
+ <div class="pd-section-label">Detalle de pagos y calendario por préstamo</div>
+ ${ls.length?ls.map(l=>{
+   const a=amortization(l),lp=payments.filter(x=>String(x.loanId)===String(l.id)).sort((x,y)=>String(x.date).localeCompare(String(y.date)));
+   const installment=l.mode==='cuota_fija'&&l.fixedInstallment?l.fixedInstallment:(l.capital/Math.max(1,l.term)+l.capital*l.rate/100);
+   const rows=[];
+   let due=new Date((l.due||l.date||today)+'T00:00:00');
+   for(let k=0;k<Math.max(1,l.term);k++){
+    let date=new Date(due);date.setMonth(due.getMonth()+k);
+    let next=new Date(date);next.setMonth(date.getMonth()+1);
+    const paid=lp.filter(x=>{let d=new Date((x.date||'')+'T00:00:00');return d>=date&&d<next}).reduce((sum,x)=>sum+x.amount,0);
+    const expected=installment;
+    const status=paid>=expected*.98?'Al día':date<new Date(today+'T00:00:00')?'Vencida':'Pendiente';
+    rows.push(`<tr><td>${date.toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'})}</td><td>${money(expected)}</td><td>${money(paid)}</td><td>${money(Math.max(0,expected-paid))}</td><td><span class="pd-pill ${status==='Al día'?'ok':status==='Vencida'?'late':'pending'}">${status==='Al día'?'✓ ':status==='Vencida'?'! ':'◷ '}${status}</span></td></tr>`);
+   }
+   return `<article class="pd-loan"><div class="pd-loan-head"><div><h3>${esc(l.code)} · ${money(l.capital)}</h3><p>${l.mode==='cuota_fija'?'Cuota mensual fija':'Interés sobre capital pendiente'} · ${l.term} meses</p></div><div class="pd-loan-actions"><span class="pd-pill ${loanStatus(l)==='Pagado'?'paid':loanStatus(l)==='Vencido'?'late':'ok'}">${loanStatus(l)==='Pagado'?'✓ Pagado':loanStatus(l)==='Vencido'?'! Vencido':'● Vigente'}</span><button type="button" class="pd-delete-loan" onclick="deleteLoan(${JSON.stringify(l.id)})">🗑 Eliminar préstamo</button></div></div>
+   <div class="pd-loan-meta"><div class="pd-meta"><label>Interés mensual</label><b>${l.rate}%</b></div><div class="pd-meta"><label>Cuota estimada</label><b>${money(installment)}</b></div><div class="pd-meta"><label>Fecha préstamo</label><b>${l.date||'—'}</b></div><div class="pd-meta"><label>Primer vencimiento</label><b>${l.due||'—'}</b></div><div class="pd-meta"><label>Capital pendiente</label><b>${money(a.balance)}</b></div><div class="pd-meta"><label>Interés pendiente</label><b>${money(a.interestDue+a.accruedToToday)}</b></div><div class="pd-meta"><label>Pagos registrados</label><b>${lp.length}</b></div><div class="pd-meta"><label>Total recibido</label><b>${money(lp.reduce((sum,x)=>sum+x.amount,0))}</b></div></div>
+   <div class="pd-table-wrap"><table class="pd-table"><thead><tr><th>Fecha de cuota</th><th>Valor esperado</th><th>Pagado</th><th>Restante cuota</th><th>Estado</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>
+   ${lp.length?`<div class="pd-table-wrap"><div class="pd-section-label">Historial real de pagos</div><table class="pd-table"><thead><tr><th>Fecha de pago</th><th>Valor recibido</th><th>Aplicado a interés</th><th>Aplicado a capital</th><th>Saldo capital tras pago</th></tr></thead><tbody>${a.rows.map(x=>`<tr><td>${x.date}</td><td>${money(x.amount)}</td><td>${money(x.interestPaid)}</td><td>${money(x.capitalPaid)}</td><td>${money(x.capitalBalance)}</td></tr>`).join('')}</tbody></table></div>`:''}
+   </article>`;
+ }).join(''):'<div class="pd-empty">Esta persona aún no tiene préstamos registrados.</div>'}
+ <p style="font-size:11px;color:#8090a3;margin:12px 2px">*Saldo estimado calculado con los pagos registrados y los intereses acumulados.</p>`;
+ modal.classList.remove('hidden');document.body.style.overflow='hidden';
+}
+async function deleteLoan(id){
+ const loan=loans.find(l=>String(l.id)===String(id));if(!loan)return;
+ const person=people.find(p=>String(p.id)===String(loan.person));
+ const related=payments.filter(p=>String(p.loanId)===String(id));
+ const ok=confirm(`¿Eliminar definitivamente el préstamo ${loan.code} de ${person?.nombre||'esta persona'}?\n\nTambién se eliminarán ${related.length} pago(s) asociados. Esta acción no se puede deshacer.`);
+ if(!ok)return;
+ try{
+  // Primero se eliminan los movimientos vinculados para evitar conflictos de clave foránea.
+  const delPayments=await bbClient.from('pagos').delete().eq('prestamo_id',id);
+  if(delPayments.error)throw new Error('No se pudieron eliminar los pagos asociados: '+delPayments.error.message);
+  const delLoan=await bbClient.from('prestamos').delete().eq('id',id);
+  if(delLoan.error)throw new Error('Se eliminaron los pagos, pero no el préstamo: '+delLoan.error.message);
+  payments=payments.filter(p=>String(p.loanId)!==String(id));
+  loans=loans.filter(l=>String(l.id)!==String(id));
+  personLoans(person?.id);
+  refreshAdmin();renderPeople();refreshPayLoans();renderPortfolio();renderReports();renderPaymentHistory();refreshDashboard();renderCalendar();
+  alert('Préstamo y pagos asociados eliminados correctamente.');
+ }catch(err){alert('No se pudo completar la eliminación: '+(err.message||err)+'\n\nActualiza los datos para verificar el estado en Supabase.');}
+}
+function calcLoan(){let c=parseCOP(document.getElementById('capital').value),r=+document.getElementById('interest').value||0,t=+document.getElementById('term').value||1,total=c*(1+r/100);document.getElementById('loanCalc').textContent=`Interés mensual inicial: ${money(c*r/100)} · Abono mensual a capital: ${money(c/t)} · Primera cuota estimada: ${money(c*r/100+c/t)}`}
+['capital','interest','term','loanMode'].forEach(id=>document.getElementById(id).addEventListener('input',calcLoan));
 function addMonthsDate(dateStr,months=1){if(!dateStr)return '';const [y,m,d]=dateStr.split('-').map(Number),target=new Date(y,m-1+months,1),lastDay=new Date(target.getFullYear(),target.getMonth()+1,0).getDate();target.setDate(Math.min(d,lastDay));return `${target.getFullYear()}-${String(target.getMonth()+1).padStart(2,'0')}-${String(target.getDate()).padStart(2,'0')}`}
 let today=new Date();today=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('loanDate').value=today;document.getElementById('firstDue').value=addMonthsDate(today);
 document.getElementById('loanDate').addEventListener('change',e=>document.getElementById('firstDue').value=addMonthsDate(e.target.value));
 ['loanDate','pLoanDate'].forEach(id=>{const d=document.getElementById(id);d.addEventListener('click',()=>{if(d.showPicker)try{d.showPicker()}catch(err){}})});
-async function persistLoan(personId,c,r,t,date,due,notes){let {data,error}=await bbClient.from('prestamos').insert({persona_id:personId,capital:c,interes:r,plazo_meses:t,fecha_prestamo:date,primer_vencimiento:due,observaciones:notes||null,estado:'activo'}).select().single();if(error)throw error;return data}
-document.getElementById('loanCreate').onsubmit=async e=>{e.preventDefault();let c=parseCOP(capital.value),r=+interest.value,t=+term.value,total=c*(1+r/100);try{let row=await persistLoan(+loanPerson.value,c,r,t,loanDate.value,firstDue.value,loanNotes.value);loans.push(mapLoan(row));renderPeople();refreshDashboard();alert('Préstamo registrado en Supabase.');e.target.reset();loanDate.value=today;firstDue.value=addMonthsDate(today);calcLoan();showPeople()}catch(err){alert('No se pudo guardar el préstamo: '+(err.message||err))}};
+function fixedMonthlyPayment(capital,ratePct,months){const r=ratePct/100;return r===0?capital/months:capital*r/(1-Math.pow(1+r,-months))}
+async function persistLoan(personId,c,r,t,date,due,notes,mode='capital_pendiente'){
+ const cuota=mode==='cuota_fija'?fixedMonthlyPayment(c,r,t):c/t;
+ let {data,error}=await bbClient.from('prestamos').insert({persona_id:personId,capital:c,interes:r,plazo_meses:t,modalidad_pago:mode,cuota_mensual:cuota,capital_pendiente:c,interes_acumulado:0,fecha_prestamo:date,primer_vencimiento:due,observaciones:notes||null,estado:'activo'}).select().single();
+ if(error)throw error;return data}
+document.getElementById('loanCreate').onsubmit=async e=>{e.preventDefault();let c=parseCOP(capital.value),r=+interest.value,t=+term.value,total=c*(1+r/100);try{let row=await persistLoan(+loanPerson.value,c,r,t,loanDate.value,firstDue.value,loanNotes.value,loanMode.value);loans.push(mapLoan(row));renderPeople();refreshDashboard();renderCalendar();alert('Préstamo registrado en Supabase.');e.target.reset();loanDate.value=today;firstDue.value=addMonthsDate(today);calcLoan();showPeople()}catch(err){alert('No se pudo guardar el préstamo: '+(err.message||err))}};
 document.getElementById('globalSearch').oninput=e=>{if(e.target.value){go('personas');document.getElementById('peopleSearch').value=e.target.value;renderPeople()}};
 function adminTab(id,btn){document.querySelectorAll('.adminpane').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.admin-tabs .btn').forEach(b=>b.className='btn soft');if(btn)btn.className='btn primary';if(id==='adminPayments')refreshPayLoans();if(id==='adminPortfolio')renderPortfolio();if(id==='adminReports')renderReports()}
 function refreshAdmin(){let q=(document.getElementById('adminSearch').value||'').toLowerCase(),arr=people.filter(p=>(p.nombre+' '+p.cedula+' '+p.celular).toLowerCase().includes(q));document.getElementById('adminPeopleCount').textContent=people.length+' persona(s)';document.getElementById('adminPeopleRows').innerHTML=arr.length?arr.map(p=>`<tr><td>${esc(p.nombre)}</td><td>${esc(p.cedula)||'—'}</td><td>${esc(p.celular)||'—'}</td><td>${loans.filter(l=>String(l.person)===String(p.id)).length}</td><td><button class="btn soft" onclick="personLoans(${p.id})">Ver</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Sin coincidencias.</td></tr>'}
-function refreshPayLoans(){payLoan.innerHTML='<option value="">Selecciona préstamo</option>'+loans.map(l=>`<option value="${l.id}">${l.code} · ${esc(people.find(p=>String(p.id)===String(l.person))?.nombre||'')}</option>`).join('')}
-async function savePayment(){let id=+payLoan.value,amount=parseCOP(payAmount.value);if(!id||amount<=0){alert('Selecciona préstamo y monto válido.');return}try{let {data,error}=await bbClient.from('pagos').insert({prestamo_id:id,monto:amount,fecha_pago:payDate.value||today,observaciones:payNote.value||null}).select().single();if(error)throw error;payments.push(mapPayment(data));payAmount.value='';payNote.value='';paymentsList.innerHTML=payments.map(p=>`<div style="padding:10px;border-bottom:1px solid var(--line)">${p.date} · ${p.code} · <b>${money(p.amount)}</b></div>`).join('');renderPortfolio();renderReports();refreshDashboard();alert('Pago guardado en Supabase.')}catch(err){alert('No se pudo registrar el pago: '+(err.message||err))}}
-function renderPortfolio(){portfolioList.innerHTML=loans.length?loans.map(l=>{let p=people.find(x=>String(x.id)===String(l.person)),paid=payments.filter(x=>String(x.loanId)===String(l.id)).reduce((a,x)=>a+x.amount,0),saldo=Math.max(0,l.total-paid);return `<div style="padding:13px;border-bottom:1px solid var(--line)"><b>${esc(p?.nombre||'')}</b> · ${l.code}<br><span style="color:#c0c8d8">Pactado ${money(l.total)} · Pagado ${money(paid)} · Saldo ${money(saldo)} · ${l.status}</span></div>`}).join(''):'Sin préstamos registrados.'}
-function renderReports(){let cap=loans.reduce((a,l)=>a+l.capital,0),paid=payments.reduce((a,p)=>a+p.amount,0),interest=loans.reduce((a,l)=>a+l.capital*l.rate/100,0),total=loans.reduce((a,l)=>a+l.total,0);reportSummary.innerHTML=`<p>Capital prestado: <b>${money(cap)}</b></p><p>Pagos recibidos: <b>${money(paid)}</b></p><p>Interés pactado: <b>${money(interest)}</b></p><p>Saldo cartera: <b>${money(Math.max(0,total-paid))}</b></p>`}
-function combinedCalc(){let c=parseCOP(pCapital.value),r=+pRate.value,t=+pTerm.value||1;combinedCalcBox.textContent=`Interés total ${money(c*r/100)} · Total ${money(c*(1+r/100))} · Cuota mensual ${money(c*(1+r/100)/t)}`}
-const combinedCalcBox=document.getElementById('combinedCalc');['pCapital','pRate','pTerm'].forEach(id=>document.getElementById(id).addEventListener('input',combinedCalc));
+// Pagos: fecha seleccionable en calendario nativo y monto con formato COP (miles separados por coma).
+document.getElementById('payDate').value=today;
+document.getElementById('payLoanSearch').addEventListener('input',refreshPayLoans);
+document.getElementById('payAmount').addEventListener('input',e=>{const el=e.target;const pos=el.selectionStart;el.value=el.value.replace(/[^0-9]/g,'');});
+document.getElementById('payAmount').addEventListener('focus',e=>{e.target.value=String(parseCOP(e.target.value)||'');});
+document.getElementById('payAmount').addEventListener('blur',e=>{e.target.value=formatCOPInput(e.target.value);});
+function refreshPayLoans(){
+ const search=(document.getElementById('payLoanSearch')?.value||'').trim().toLowerCase();
+ const current=document.getElementById('payLoan')?.value||'';
+ const list=loans.filter(l=>{const person=people.find(p=>String(p.id)===String(l.person));return !search||(`${l.code} ${person?.nombre||''} ${person?.cedula||''}`).toLowerCase().includes(search)});
+ payLoan.innerHTML='<option value="">Selecciona préstamo</option>'+list.map(l=>`<option value="${l.id}">${esc(l.code)} · ${esc(people.find(p=>String(p.id)===String(l.person))?.nombre||'')}</option>`).join('');
+ if(current&&list.some(l=>String(l.id)===String(current)))payLoan.value=current;
+ const hint=document.getElementById('payLoanSearchHint');if(hint)hint.textContent=search?`${list.length} préstamo(s) encontrado(s).`:'También puedes elegirlo directamente de la lista.';
+}
+async function savePayment(){let id=+payLoan.value,amount=parseCOP(payAmount.value);if(!id||amount<=0){alert('Selecciona préstamo y monto válido.');return}const loan=loans.find(l=>String(l.id)===String(id));if(!loan){alert('No se encontró el préstamo.');return}const before=amortization(loan);if(before.balance<=0&&before.interestDue<=0){alert('Este préstamo ya está PAGADO.');return}try{let {data,error}=await bbClient.from('pagos').insert({prestamo_id:id,monto:amount,fecha_pago:payDate.value||today,observaciones:payNote.value||null}).select().single();if(error)throw error;payments.push(mapPayment(data));const after=amortization(loan);if(after.balance<=0&&after.interestDue<=0){const upd=await bbClient.from('prestamos').update({estado:'pagado'}).eq('id',id);if(upd.error)console.warn('Pago registrado; no se pudo actualizar estado en Supabase:',upd.error.message);loan.status='pagado';}else loan.status='activo';payAmount.value='';payNote.value='';payDate.value=today;renderPaymentHistory();renderPortfolio();renderReports();refreshDashboard();renderCalendar();alert('Pago guardado. Se distribuyó automáticamente entre intereses del período y capital.')}catch(err){alert('No se pudo registrar el pago: '+(err.message||err))}}
+function renderPortfolio(){
+ const host=document.getElementById('portfolioList');if(!host)return;
+ const totalCapital=loans.reduce((sum,l)=>sum+(Number(l.capital)||0),0);
+ const totalRecovered=loans.reduce((sum,l)=>sum+amortization(l).totalCapital,0);
+ const totalInterest=loans.reduce((sum,l)=>sum+amortization(l).interestCollected,0);
+ const totalPending=loans.reduce((sum,l)=>{const a=amortization(l);return sum+a.balance+a.interestDue+a.accruedToToday},0);
+ const active=loans.filter(l=>loanStatus(l)==='Vigente').length;
+ const late=loans.filter(l=>loanStatus(l)==='Vencido').length;
+ const paidCount=loans.filter(l=>loanStatus(l)==='Pagado').length;
+ const kpis=document.getElementById('portfolioKpis');if(kpis)kpis.innerHTML=`<div class="portfolio-kpi"><span class="kpi-icon">↗</span><div class="kpi-label">Capital colocado</div><strong>${money(totalCapital)}</strong><small>${loans.length} préstamo(s) registrados</small></div><div class="portfolio-kpi"><span class="kpi-icon">✓</span><div class="kpi-label">Capital recuperado</div><strong>${money(totalRecovered)}</strong><small>${totalCapital?Math.round(totalRecovered/totalCapital*100):0}% del capital</small></div><div class="portfolio-kpi"><span class="kpi-icon">$</span><div class="kpi-label">Intereses cobrados</div><strong>${money(totalInterest)}</strong><small>Recaudo por intereses</small></div><div class="portfolio-kpi"><span class="kpi-icon">◷</span><div class="kpi-label">Saldo por recuperar</div><strong>${money(totalPending)}</strong><small>${late} vencido(s) · ${active} vigente(s)</small></div>`;
+ const q=(document.getElementById('portfolioSearch')?.value||'').trim().toLowerCase(),filter=document.getElementById('portfolioStatus')?.value||'all';
+ const list=loans.filter(l=>{const p=people.find(x=>String(x.id)===String(l.person)),st=loanStatus(l).toLowerCase();const text=`${p?.nombre||''} ${p?.cedula||''} ${l.code||''}`.toLowerCase();return (!q||text.includes(q))&&(filter==='all'||st===filter)});
+ const count=document.getElementById('portfolioCount');if(count)count.textContent=`${list.length} de ${loans.length} préstamo(s)`;
+ host.innerHTML=list.length?list.map(l=>{const p=people.find(x=>String(x.id)===String(l.person)),a=amortization(l),st=loanStatus(l).toLowerCase(),received=a.totalCapital+a.interestCollected,progress=l.capital?Math.min(100,Math.round(a.totalCapital/l.capital*100)):0,loanPayments=payments.filter(x=>String(x.loanId)===String(l.id));return `<article class="portfolio-card"><div class="portfolio-card-head"><div class="portfolio-person"><span class="portfolio-avatar">${esc((p?.nombre||'P').trim().slice(0,2).toUpperCase())}</span><div><h5>${esc(p?.nombre||'Persona no encontrada')}</h5><p>${esc(l.code||'Préstamo')} · ${p?.cedula?'Cédula '+esc(p.cedula):'Sin cédula registrada'}</p></div></div><div class="portfolio-card-actions"><span class="portfolio-badge ${st==='vencido'?'vencido':st==='pagado'?'pagado':'vigente'}">${st==='vencido'?'⚠ VENCIDO':st==='pagado'?'✓ PAGADO':'● VIGENTE'}</span><button class="btn soft" onclick="personLoans(${JSON.stringify(l.person)})">Ver expediente ↗</button></div></div><div class="portfolio-card-body"><div class="portfolio-values"><div class="portfolio-value"><span>Capital inicial</span><b>${money(l.capital)}</b></div><div class="portfolio-value"><span>Capital recuperado</span><b>${money(a.totalCapital)}</b></div><div class="portfolio-value"><span>Interés recibido</span><b>${money(a.interestCollected)}</b></div><div class="portfolio-value"><span>Capital pendiente</span><b>${money(a.balance)}</b></div><div class="portfolio-value"><span>Interés pendiente</span><b>${money(a.interestDue+a.accruedToToday)}</b></div><div class="portfolio-value"><span>Total recibido</span><b>${money(loanPayments.reduce((sum,x)=>sum+x.amount,0))}</b></div><div class="portfolio-value"><span>Cuota estimada</span><b>${money(l.fixedInstallment||((l.capital/Math.max(1,l.term))+(l.capital*l.rate/100)))}</b></div><div class="portfolio-value"><span>Plan / tasa</span><b>${l.term||'—'} meses · ${l.rate||0}%</b></div></div><div class="portfolio-progress"><div class="portfolio-progress-label"><span>Recuperación de capital</span><strong>${progress}%</strong></div><div class="portfolio-progress-track"><i style="width:${progress}%"></i></div></div><div class="portfolio-card-foot"><span>Inicio: <strong>${l.date||'—'}</strong> · Primer vencimiento: <strong>${l.due||'—'}</strong></span><span>${loanPayments.length} pago(s) registrado(s) · Recuperado total: <strong>${money(received)}</strong></span></div></div></article>`}).join(''):'<div class="portfolio-empty">No hay préstamos que coincidan con la búsqueda o el estado seleccionado.</div>';
+}
+document.getElementById('portfolioSearch')?.addEventListener('input',renderPortfolio);document.getElementById('portfolioStatus')?.addEventListener('change',renderPortfolio);
+function renderReports(){let cap=loans.reduce((a,l)=>a+l.capital,0),paid=payments.reduce((a,p)=>a+p.amount,0),interest=loans.reduce((a,l)=>a+amortization(l).interestCollected,0),capital=loans.reduce((a,l)=>a+amortization(l).totalCapital,0),balance=loans.reduce((a,l)=>a+amortization(l).balance,0),interestDue=loans.reduce((a,l)=>a+amortization(l).interestDue+amortization(l).accruedToToday,0);reportSummary.innerHTML=`<p>Capital prestado: <b>${money(cap)}</b></p><p>Capital recuperado: <b>${money(capital)}</b></p><p>Intereses cobrados: <b>${money(interest)}</b></p><p>Pagos recibidos: <b>${money(paid)}</b></p><p>Capital pendiente: <b>${money(balance)}</b></p><p>Interés pendiente: <b>${money(interestDue)}</b></p>`}
+function combinedCalc(){let c=parseCOP(pCapital.value),r=+pRate.value,t=+pTerm.value||1,mode=pMode.value;
+ const cuota=mode==='cuota_fija'?fixedMonthlyPayment(c,r,t):c/t;
+ combinedCalcBox.textContent=mode==='cuota_fija'?`Cuota fija calculada: ${money(cuota)} · Total estimado: ${money(cuota*t)}`:`Interés primera cuota: ${money(c*r/100)} · Abono a capital: ${money(c/t)} · Primera cuota: ${money(c*r/100+c/t)}` }
+const combinedCalcBox=document.getElementById('combinedCalc');['pCapital','pRate','pTerm','pMode'].forEach(id=>document.getElementById(id).addEventListener('input',combinedCalc));
 pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);pLoanDate.addEventListener('change',()=>pFirstDue.value=addMonthsDate(pLoanDate.value));
-combinedForm.onsubmit=async e=>{e.preventDefault();let c=parseCOP(pCapital.value),r=+pRate.value,t=+pTerm.value;try{let person=await savePersonData({nombre:pName.value.trim(),cedula:pCedula.value.trim(),celular:pPhone.value.trim(),correo:pEmail.value.trim(),direccion:pAddress.value.trim(),notas:pNotes.value.trim()});people.unshift(person);let row=await persistLoan(person.id,c,r,t,pLoanDate.value,pFirstDue.value,pNotes.value);loans.push(mapLoan(row));e.target.reset();pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);combinedCalc();refreshAdmin();renderPeople();refreshDashboard();alert('Persona y préstamo guardados en Supabase.')}catch(err){alert('No se pudo guardar: '+(err.message||err))}};
+combinedForm.onsubmit=async e=>{e.preventDefault();let c=parseCOP(pCapital.value),r=+pRate.value,t=+pTerm.value;try{let person=await savePersonData({nombre:pName.value.trim(),cedula:pCedula.value.trim(),celular:pPhone.value.trim(),correo:pEmail.value.trim(),direccion:pAddress.value.trim(),notas:pNotes.value.trim()});people.unshift(person);let row=await persistLoan(person.id,c,r,t,pLoanDate.value,pFirstDue.value,pNotes.value,pMode.value);loans.push(mapLoan(row));e.target.reset();pLoanDate.value=today;pFirstDue.value=addMonthsDate(today);combinedCalc();refreshAdmin();renderPeople();refreshDashboard();renderCalendar();closeAdminLoan();alert('Persona y préstamo guardados en Supabase.')}catch(err){alert('No se pudo guardar: '+(err.message||err))}};
 adminSearch.oninput=refreshAdmin;
-function mapLoan(x){let total=Number(x.capital)*(1+Number(x.interes)/100);return {id:x.id,code:'P-'+String(x.id).padStart(4,'0'),person:x.persona_id,capital:Number(x.capital),rate:Number(x.interes),term:Number(x.plazo_meses),total,installment:total/Number(x.plazo_meses),date:x.fecha_prestamo,due:x.primer_vencimiento,notes:x.observaciones,status:x.estado||'activo'}}
+function mapLoan(x){return {id:x.id,code:'P-'+String(x.id).padStart(4,'0'),person:x.persona_id,capital:Number(x.capital),rate:Number(x.interes),term:Number(x.plazo_meses),mode:x.modalidad_pago||'capital_pendiente',fixedInstallment:Number(x.cuota_mensual||0),date:x.fecha_prestamo,due:x.primer_vencimiento,notes:x.observaciones,status:x.estado||'activo',total:Number(x.capital)*(1+Number(x.interes)/100)}}
 function mapPayment(x){let loan=loans.find(l=>String(l.id)===String(x.prestamo_id));return {id:x.id,loanId:x.prestamo_id,code:loan?.code||('P-'+x.prestamo_id),amount:Number(x.monto),date:x.fecha_pago,note:x.observaciones}}
-function loanStatus(l){let paid=payments.filter(p=>String(p.loanId)===String(l.id)).reduce((a,p)=>a+p.amount,0),balance=Math.max(0,l.total-paid),due=new Date(l.due+'T00:00:00'),now=new Date(today+'T00:00:00');return balance<=0?'Pagado':due<now?'Vencido':'Vigente'}
-function refreshDashboard(){let total=loans.reduce((a,l)=>a+l.total,0),paid=payments.reduce((a,p)=>a+p.amount,0),balance=Math.max(0,total-paid);const set=(id,v)=>{let el=document.getElementById(id);if(el)el.textContent=v};set('dashPeople',people.length);set('dashLoans',loans.length);set('dashBalance',money(balance));set('dashPaid',money(paid));}
-async function loadAllData(){try{let [pr,lr,pa]=await Promise.all([bbClient.from('personas').select('*').order('id',{ascending:false}),bbClient.from('prestamos').select('*').order('id',{ascending:false}),bbClient.from('pagos').select('*').order('id',{ascending:false})]);for(let x of [pr,lr,pa])if(x.error)throw x.error;people=pr.data||[];loans=(lr.data||[]).map(mapLoan);payments=(pa.data||[]).map(mapPayment);loans.forEach(l=>l.status=loanStatus(l));renderPeople();fillPeopleSelect();refreshAdmin();refreshPayLoans();renderPortfolio();renderReports();refreshDashboard();}catch(err){alert('No se pudieron cargar los datos de Supabase: '+(err.message||err));}}
+function monthPeriods(from,to){if(!from||!to)return 0;const a=new Date(from+'T00:00:00'),b=new Date(to+'T00:00:00');if(Number.isNaN(a.getTime())||Number.isNaN(b.getTime())||b<=a)return 0;let m=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth());return Math.max(0,m)}
+function amortization(l){
+ let balance=Math.max(0,l.capital),interestDue=0,lastDate=l.date||today,totalCapital=0,totalPaid=0;
+ const rows=payments.filter(p=>String(p.loanId)===String(l.id)).sort((a,b)=>String(a.date).localeCompare(String(b.date))||Number(a.id)-Number(b.id)).map(p=>{
+  const periods=monthPeriods(lastDate,p.date),interestAccrued=balance>0?balance*(l.rate/100)*periods:0;
+  interestDue+=interestAccrued;
+  const interestPaid=Math.min(p.amount,interestDue),remaining=Math.max(0,p.amount-interestPaid),capitalPaid=Math.min(balance,remaining);
+  interestDue=Math.max(0,interestDue-interestPaid);balance=Math.max(0,balance-capitalPaid);
+  totalPaid+=p.amount;totalCapital+=capitalPaid;
+  lastDate=p.date;
+  return {...p,periods,interestAccrued,interestPaid,capitalPaid,capitalBalance:balance,interestBalance:interestDue};
+ });
+ const interestCollected=rows.reduce((a,p)=>a+p.interestPaid,0);
+ const accruedToToday=balance>0?balance*(l.rate/100)*monthPeriods(lastDate,today):0;return {rows,balance,interestDue,accruedToToday,totalPaid,totalCapital,interestCollected,interestAccrued:rows.reduce((a,p)=>a+p.interestAccrued,0)};
+}
+function loanStatus(l){const a=amortization(l),due=new Date(l.due+'T00:00:00'),now=new Date(today+'T00:00:00');return a.balance<=0&&a.interestDue<=0?'Pagado':due<now?'Vencido':'Vigente'}
+function renderPaymentHistory(loanId){const host=document.getElementById('paymentsList');if(!host)return;const list=payments.filter(p=>!loanId||String(p.loanId)===String(loanId)).sort((a,b)=>String(b.date).localeCompare(String(a.date)));host.innerHTML=list.length?list.map(p=>{const a=amortization(loans.find(l=>String(l.id)===String(p.loanId))||{id:p.loanId,capital:0,rate:0,date:p.date});const x=a.rows.find(z=>String(z.id)===String(p.id));return `<div style="padding:12px;border-bottom:1px solid var(--line)"><b>${p.date} · ${p.code} · ${money(p.amount)}</b><div style="color:#c0c8d8;font-size:12px;margin-top:5px">Interés: ${money(x?.interestPaid)} · Capital: ${money(x?.capitalPaid)} · Saldo capital: ${money(x?.capitalBalance)}</div></div>`}).join(''):'<div class="empty">No hay pagos registrados.</div>'}
+function renderCalendar(){
+ const host=document.getElementById('calendarUpcoming');if(!host)return;const base=new Date(today+'T00:00:00'),items=[];
+ loans.forEach(l=>{const a=amortization(l);if(a.balance<=0)return;let bal=a.balance,first=new Date((l.due||today)+'T00:00:00');if(Number.isNaN(first.getTime()))return;const term=Math.max(1,Number(l.term)||1),principalPlan=l.capital/term;
+  for(let k=0;k<term;k++){const d=new Date(first);d.setMonth(first.getMonth()+k);if(d<base)continue;if(bal<=0)break;const int=bal*l.rate/100,cap=Math.min(bal,principalPlan),amount=int+cap;items.push({date:d,loan:l,amount,interest:int,capital:cap,person:people.find(p=>String(p.id)===String(l.person)),n:k+1});bal=Math.max(0,bal-cap);}
+ });
+ items.sort((a,b)=>a.date-b.date);const fmt=d=>d.toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'});const fmtShort=d=>d.toLocaleDateString('es-CO',{day:'2-digit',month:'short'});
+ const total=items.reduce((sum,x)=>sum+x.amount,0);const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('calCount',items.length.toLocaleString('es-CO'));set('calTotal',money(total));set('calNext',items.length?fmtShort(items[0].date):'—');
+ const search=(document.getElementById('calendarSearch')?.value||'').trim().toLowerCase(),filter=document.getElementById('calendarFilter')?.value||'all';const limit=filter==='all'?null:Number(filter),cutoff=limit?new Date(base):null;if(cutoff&&limit)cutoff.setDate(cutoff.getDate()+limit);
+ const visible=items.filter(x=>{const p=x.person||{},hay=[p.nombre,p.cedula,x.loan.code].join(' ').toLowerCase();return(!search||hay.includes(search))&&(!cutoff||x.date<=cutoff)}).slice(0,100);
+ if(!visible.length){host.innerHTML='<div class="calendar-empty">'+(items.length?'No hay cobros que coincidan con la búsqueda o el filtro.':'No hay cobros futuros pendientes.')+'</div>';return;}
+ host.innerHTML=visible.map(x=>`<div class="calendar-item"><div class="calendar-datebox"><div class="day">${x.date.getDate()}</div><div class="month">${x.date.toLocaleDateString('es-CO',{month:'short'})}</div><div class="quota">Cuota ${x.n}</div></div><div><div class="calendar-person">${esc(x.person?.nombre||'Persona')}</div><div class="calendar-meta">${esc(x.loan.code)} · Vence ${fmt(x.date)}</div><div class="calendar-meta">Capital ${money(x.capital)} + interés ${money(x.interest)}</div></div><div class="calendar-amount"><strong>${money(x.amount)}</strong><small>Recaudo esperado</small></div></div>`).join('');
+}
+document.getElementById('calendarSearch')?.addEventListener('input',renderCalendar);document.getElementById('calendarFilter')?.addEventListener('change',renderCalendar);
+function refreshDashboard(){
+ const total=loans.reduce((a,l)=>a+l.capital,0),paid=payments.reduce((a,p)=>a+p.amount,0),capitalRecovered=loans.reduce((a,l)=>a+amortization(l).totalCapital,0),interestCollected=loans.reduce((a,l)=>a+amortization(l).interestCollected,0),balance=loans.reduce((a,l)=>a+amortization(l).balance,0),interestDue=loans.reduce((a,l)=>a+amortization(l).interestDue+amortization(l).accruedToToday,0);
+ const set=(id,v)=>{let el=document.getElementById(id);if(el)el.textContent=v};
+ set('dashLent',money(total));set('dashRecovered',money(capitalRecovered));set('dashInterest',money(interestCollected));set('dashPending',money(balance+interestDue));
+ set('dashMonthPaid',money(paid));set('dashMonthReceived',money(paid));set('dashMonthPending',money(balance+interestDue));set('dashMonthCaption',payments.length?'Pagos registrados en la cartera':'Sin pagos registrados todavía');
+ set('dashPortfolioCount',loans.length);
+ const statuses=loans.map(l=>loanStatus(l)),n=loans.length||0,current=statuses.filter(x=>x==='Vigente').length,late=statuses.filter(x=>x==='Vencido').length,pending=statuses.filter(x=>x==='Pagado').length;
+ set('dashCurrentPct',(n?Math.round(current/n*100):0)+'%');set('dashPendingPct',(n?Math.round(pending/n*100):0)+'%');set('dashLatePct',(n?Math.round(late/n*100):0)+'%');
+ const donut=document.querySelector('.donut');if(donut){let a=n?current/n*100:0,b=n?pending/n*100:0;donut.style.background=`conic-gradient(#91d1ba 0 ${a}%,#f0c78d ${a}% ${a+b}%,#e8aab8 ${a+b}% 100%)`;}
+ const rows=document.getElementById('dashUpcomingRows');
+ if(rows){const upcoming=loans.filter(l=>loanStatus(l)!=='Pagado').sort((a,b)=>String(a.due).localeCompare(String(b.due))).slice(0,6);
+ rows.innerHTML=upcoming.length?upcoming.map(l=>{const p=people.find(x=>String(x.id)===String(l.person)),a=amortization(l),periodInterest=a.balance*l.rate/100,capital=Math.min(a.balance,l.capital/Math.max(1,l.term)),amount=periodInterest+capital;return `<tr><td>${esc(p?.nombre||'')}</td><td>${l.code}</td><td>${money(amount)}</td><td>${l.due||'—'}</td><td><span class="status ${loanStatus(l)==='Vencido'?'late':'ok'}">${loanStatus(l)}</span></td></tr>`}).join(''):'<tr><td colspan="5" class="empty">No hay cobros pendientes.</td></tr>';}
+}
+async function loadAllData(){try{let [pr,lr,pa]=await Promise.all([bbClient.from('personas').select('*').order('id',{ascending:false}),bbClient.from('prestamos').select('*').order('id',{ascending:false}),bbClient.from('pagos').select('*').order('id',{ascending:false})]);for(let x of [pr,lr,pa])if(x.error)throw x.error;people=pr.data||[];loans=(lr.data||[]).map(mapLoan);payments=(pa.data||[]).map(mapPayment);loans.forEach(l=>l.status=loanStatus(l));renderPeople();fillPeopleSelect();refreshAdmin();refreshPayLoans();renderPortfolio();renderReports();renderPaymentHistory();refreshDashboard();renderCalendar();}catch(err){alert('No se pudieron cargar los datos de Supabase: '+(err.message||err));}}
 </script>
 
 <script>
@@ -221,22 +529,41 @@ const BB_SUPABASE_URL='https://kvpwgyvyianthwztahwz.supabase.co';
 const BB_SUPABASE_KEY='sb_publishable_gZvVbZDuF7T5eNwqKl7G5w_TxJooru4';
 const bbClient=window.supabase.createClient(BB_SUPABASE_URL,BB_SUPABASE_KEY);
 document.querySelector('.app').style.visibility='hidden';
-document.getElementById('bbLogin').addEventListener('click',async()=>{
+async function performLogin(){
  const err=document.getElementById('bbError');err.textContent='';
  const email=document.getElementById('bbEmail').value.trim(),password=document.getElementById('bbPassword').value;
  if(!email||!password){err.textContent='Ingresa correo y contraseña.';return;}
- const btn=document.getElementById('bbLogin');btn.disabled=true;btn.textContent='Validando...';
- const {data,error}=await bbClient.auth.signInWithPassword({email,password});
- btn.disabled=false;btn.textContent='Ingresar';
- if(error){err.textContent='No fue posible ingresar. Verifica tus credenciales.';return;}
- const {data:who}=await bbClient.auth.getUser();
- if(who?.user?.id!=='d1eb4189-787d-49ad-b632-f565a11413f4'){
-   await bbClient.auth.signOut();err.textContent='Este usuario no tiene acceso de administrador.';return;
- }
- document.getElementById('bbGate').remove();document.querySelector('.app').style.visibility='visible';
- await loadAllData();
- const topuser=document.querySelector('.topuser');if(topuser)topuser.innerHTML='<div class="avatar">AD</div> Administrador <button onclick="bbLogout()" style="border:0;background:transparent;color:#e1e8f5;cursor:pointer">Salir</button>';
+ const btn=document.getElementById('bbLogin');if(btn.disabled)return;btn.disabled=true;btn.textContent='Validando...';
+ try{
+  const {error}=await bbClient.auth.signInWithPassword({email,password});
+  if(error){err.textContent='No fue posible ingresar. Verifica tus credenciales.';return;}
+  const {data:who}=await bbClient.auth.getUser();
+  if(who?.user?.id!=='d1eb4189-787d-49ad-b632-f565a11413f4'){
+    await bbClient.auth.signOut();err.textContent='Este usuario no tiene acceso de administrador.';return;
+  }
+  document.getElementById('bbGate').remove();document.querySelector('.app').style.visibility='visible';
+  await loadAllData();startRealtimeSync();
+  const topuser=document.querySelector('.topuser');if(topuser)topuser.innerHTML='<div class="avatar">AD</div> Administrador <button onclick="bbLogout()" style="border:0;background:transparent;color:#e1e8f5;cursor:pointer">Salir</button>';
+ }catch(e){err.textContent='No fue posible ingresar. Verifica tus credenciales.';}
+ finally{if(document.getElementById('bbLogin')){btn.disabled=false;btn.textContent='Ingresar';}}
+}
+document.getElementById('bbLogin').addEventListener('click',performLogin);
+document.getElementById('bbPassword').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();performLogin();}});
+document.getElementById('bbEmail').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();performLogin();}});
+document.getElementById('bbTogglePassword').addEventListener('click',()=>{
+ const input=document.getElementById('bbPassword'),button=document.getElementById('bbTogglePassword'),show=input.type==='password';
+ input.type=show?'text':'password';button.textContent=show?'◎':'◉';button.setAttribute('aria-label',show?'Ocultar contraseña':'Mostrar contraseña');button.title=show?'Ocultar contraseña':'Mostrar contraseña';input.focus();
 });
+let bbRealtimeStarted=false,bbReloadTimer=null;
+function startRealtimeSync(){
+ if(bbRealtimeStarted)return;bbRealtimeStarted=true;
+ bbClient.channel('bearbank-sync')
+ .on('postgres_changes',{event:'*',schema:'public',table:'personas'},()=>scheduleDataReload())
+ .on('postgres_changes',{event:'*',schema:'public',table:'prestamos'},()=>scheduleDataReload())
+ .on('postgres_changes',{event:'*',schema:'public',table:'pagos'},()=>scheduleDataReload())
+ .subscribe();
+}
+function scheduleDataReload(){clearTimeout(bbReloadTimer);bbReloadTimer=setTimeout(()=>loadAllData(),350);}
 async function bbLogout(){await bbClient.auth.signOut();location.reload();}
 </script>
 </body>
